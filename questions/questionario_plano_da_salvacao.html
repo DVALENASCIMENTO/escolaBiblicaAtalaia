@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário — O Plano da Salvação</title>
+<style>
+:root{
+  --green:#16a34a; --green-dark:#15803d; --red:#dc2626;
+  --bg:#f3f4f6; --card:#fff; --text:#172033; --muted:#64748b;
+  --border:#e2e8f0;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#eefbf2,#f8fafc);color:var(--text)}
+.container{max-width:900px;margin:auto;padding:24px 16px 50px}
+.header,.card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 30px rgba(15,23,42,.07)}
+.header{padding:28px;text-align:center;margin-bottom:18px}
+.header h1{margin:0 0 8px;font-size:28px}.header p{margin:5px;color:var(--muted)}
+.name-box{margin-top:22px;text-align:left}.name-box label{font-weight:700;display:block;margin-bottom:8px}
+input[type=text]{width:100%;padding:14px;border:2px solid var(--border);border-radius:10px;font-size:16px;outline:none}
+input[type=text]:focus{border-color:var(--green)}
+.progress-wrap{position:sticky;top:8px;z-index:5;background:#fff;border:1px solid var(--border);padding:12px;border-radius:14px;margin:15px 0}
+.progress-info{display:flex;justify-content:space-between;font-size:14px;font-weight:700;margin-bottom:8px}
+.track{height:14px;background:#e5e7eb;border-radius:99px;overflow:hidden;display:flex}
+.correct-bar{background:var(--green);height:100%;width:0;transition:.3s}
+.incorrect-bar{background:var(--red);height:100%;width:0;transition:.3s}
+.card{padding:22px;margin:14px 0}
+.question{font-size:18px;font-weight:700;line-height:1.45;margin-bottom:15px}
+.options{display:grid;gap:10px}
+.option{border:2px solid var(--border);background:#fff;padding:13px 15px;border-radius:11px;cursor:pointer;transition:.2s;text-align:left;font-size:15px}
+.option:hover{border-color:#94a3b8;background:#f8fafc}
+.option.selected.correct{border-color:var(--green);background:#dcfce7;color:#166534}
+.option.selected.incorrect{border-color:var(--red);background:#fee2e2;color:#991b1b}
+.option.disabled{cursor:default}
+.option.disabled:hover{background:inherit}
+.explanation{display:none;margin-top:12px;padding:11px 13px;border-radius:10px;font-size:14px;font-weight:600}
+.explanation.correct{display:block;background:#f0fdf4;color:#166534}
+.explanation.incorrect{display:block;background:#fef2f2;color:#991b1b}
+.actions{text-align:center;margin-top:24px}
+button{border:0;border-radius:11px;padding:14px 22px;font-size:16px;font-weight:700;cursor:pointer}
+#finishBtn{background:var(--green);color:white}#finishBtn:hover{background:var(--green-dark)}
+#finishBtn:disabled{background:#94a3b8;cursor:not-allowed}
+.result{display:none;text-align:center;background:#fff;border:1px solid var(--border);border-radius:18px;padding:30px;margin-top:22px}
+.score{font-size:48px;font-weight:800;color:var(--green)}
+.status{font-size:22px;font-weight:800;margin:10px 0 20px}
+.certificate{display:none;margin-top:18px}
+.cert-box{border:8px double #166534;padding:38px 25px;background:#fbfffc}
+.cert-box h2{font-size:34px;margin:5px;color:#166534}
+.cert-box h3{font-size:24px;margin:24px 0 10px}
+.cert-name{font-size:28px;font-weight:800;margin:20px 0}
+.cert-text{font-size:16px;line-height:1.6}
+.cert-course{font-size:20px;font-weight:700;color:#166534}
+.download{background:#166534;color:#fff;margin-top:20px}
+.hidden{display:none!important}
+@media print{
+  body{background:#fff}.container>*:not(.certificate){display:none!important}
+  .certificate{display:block!important}.download{display:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="header">
+    <h1>Questionário — O Plano da Salvação</h1>
+    <p><strong>Escola Bíblica Atalaia</strong></p>
+    <p>Curso 1 — Fundamentos da Fé | Aula 1</p>
+    <div class="name-box">
+      <label for="fullName">Nome completo</label>
+      <input id="fullName" type="text" placeholder="Digite seu nome completo" autocomplete="name">
+    </div>
+  </section>
+
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="progressText">0 de 40 respondidas</span>
+      <span id="percentText">0%</span>
+    </div>
+    <div class="track">
+      <div id="correctBar" class="correct-bar"></div>
+      <div id="incorrectBar" class="incorrect-bar"></div>
+    </div>
+  </div>
+
+  <main id="quiz"></main>
+
+  <div class="actions">
+    <button id="finishBtn" disabled>Finalizar questionário</button>
+  </div>
+
+  <section id="result" class="result">
+    <h2>Resultado</h2>
+    <div id="score" class="score">0</div>
+    <div id="status" class="status"></div>
+    <p id="resultText"></p>
+    <button id="certificateBtn" class="download hidden">Abrir certificado</button>
+
+    <div id="certificate" class="certificate">
+      <div class="cert-box">
+        <p>ESCOLA BÍBLICA ATALAIA</p>
+        <h2>CERTIFICADO</h2>
+        <p>Certificamos que</p>
+        <div id="certName" class="cert-name"></div>
+        <p class="cert-text">concluiu o questionário da</p>
+        <div class="cert-course">Aula 1 — O Plano da Salvação</div>
+        <p class="cert-text">Curso 1 — Fundamentos da Fé</p>
+        <p id="certScore" class="cert-text"></p>
+        <p class="cert-text">Parabéns pela conclusão desta etapa de estudo!</p>
+        <button id="downloadBtn" class="download">Baixar certificado</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const questions = [
+["Qual é o texto-base principal da Aula 1?",["Romanos 3:23","João 3:16","Efésios 2:8-9","Romanos 10:9-10"],1],
+["Segundo a aula, qual é a mensagem central revelada pelas Escrituras?",["O homem pode alcançar Deus por seus próprios méritos.","Deus deseja apenas que o homem cumpra regras religiosas.","Deus ama o ser humano e providenciou um caminho para restaurar a comunhão perdida pelo pecado.","A salvação depende principalmente das boas obras."],2],
+["Por que o Plano da Salvação é considerado o fundamento da fé cristã?",["Porque explica como adquirir prosperidade.","Porque mostra por que Jesus veio, morreu na cruz e como podemos receber a vida eterna.","Porque ensina exclusivamente sobre os dons espirituais.","Porque apresenta as regras da vida em sociedade."],1],
+["Segundo a aula, a salvação é:",["Resultado dos méritos humanos.","Conquistada por boas obras.","Um presente da graça de Deus, recebido mediante a fé em Jesus Cristo.","Alcançada pelo conhecimento da Bíblia."],2],
+["Para que Deus criou o ser humano?",["Para viver independente do Criador.","Para conhecer, amar, servir e viver em comunhão com Deus.","Para conquistar riquezas.","Para governar espiritualmente os anjos."],1],
+["Como o ser humano foi criado, segundo Gênesis 1:26?",["À imagem e semelhança dos anjos.","À imagem e semelhança de Adão.","À imagem e semelhança de Deus.","À imagem e semelhança da natureza."],2],
+["Qual destas características fazia parte da realidade do Jardim do Éden antes da queda?",["Culpa e vergonha.","Sofrimento e morte.","Paz, alegria, santidade e comunhão perfeita com Deus.","Separação espiritual."],2],
+["Segundo a aplicação da aula, fomos criados para:",["Conhecer, amar e servir a Deus.","Buscar somente realizações materiais.","Viver sem depender de Deus.","Confiar exclusivamente em nossas próprias capacidades."],0],
+["O que aconteceu quando Adão e Eva desobedeceram à ordem de Deus?",["A humanidade alcançou a perfeição.","O pecado entrou no mundo.","A morte foi eliminada.","A comunhão com Deus foi aperfeiçoada."],1],
+["Qual destas é uma consequência do pecado apresentada na aula?",["Vida eterna.","Comunhão perfeita.","Separação espiritual.","Santidade."],2],
+["Segundo Romanos 3:23, citado na aula:",["Somente algumas pessoas pecaram.","Todos pecaram e estão destituídos da glória de Deus.","Somente os primeiros seres humanos pecaram.","O pecado pode ser eliminado pelas boas obras."],1],
+["Por que o ser humano não consegue restaurar a comunhão com Deus por seus próprios esforços?",["Porque ninguém consegue resolver a realidade do pecado por seus próprios méritos.","Porque Deus não deseja perdoar o homem.","Porque as boas obras são proibidas.","Porque a Bíblia não fala sobre perdão."],0],
+["Qual é a relação entre boas obras e pecado apresentada na aula?",["As boas obras apagam todos os pecados.","As boas obras tornam desnecessária a fé.","As boas obras são importantes, mas não apagam nossos pecados.","As boas obras substituem o sacrifício de Cristo."],2],
+["Como Deus demonstrou seu amor pela humanidade mesmo depois da queda?",["Enviando anjos para morrer pelos pecadores.","Enviando Seu Filho, Jesus Cristo, para realizar aquilo que ninguém poderia fazer.","Eliminando todas as consequências do pecado imediatamente.","Fazendo o homem alcançar a salvação por seus próprios esforços."],1],
+["Segundo Romanos 5:8, Cristo:",["Morreu pelos justos depois que eles se tornaram perfeitos.","Morreu por nós enquanto ainda éramos pecadores.","Morreu apenas pelos seus discípulos.","Morreu para abolir a necessidade de arrependimento."],1],
+["Qual das alternativas apresenta corretamente algumas obras de Jesus mencionadas na aula?",["Viveu sem pecado, morreu na cruz em nosso lugar e ressuscitou ao terceiro dia.","Viveu em pecado, morreu e permaneceu morto.","Apenas ensinou princípios morais.","Conquistou a salvação por meio de riquezas."],0],
+["O que Jesus venceu por meio de sua obra?",["Apenas as dificuldades financeiras.","O pecado, a morte e o inferno.","Somente as doenças físicas.","Apenas os problemas sociais."],1],
+["O que Cristo realizou na cruz?",["Pagou o preço da nossa redenção.","Demonstrou que a salvação depende de obras.","Eliminou a necessidade de fé.","Mostrou que o pecado não existe."],0],
+["O que a cruz revela, segundo a aula?",["Apenas a fraqueza humana.","O amor e a justiça de Deus.","A derrota definitiva de Cristo.","A superioridade das obras humanas."],1],
+["Segundo Efésios 2:8-9, como somos salvos?",["Pela riqueza e pelo conhecimento.","Pelas boas obras.","Pela graça, mediante a fé.","Pela capacidade humana."],2],
+["A salvação pode ser:",["Comprada por dinheiro.","Conquistada por obras.","Recebida como um presente da graça de Deus.","Adquirida através de méritos pessoais."],2],
+["Qual alternativa apresenta corretamente elementos necessários para receber a salvação, segundo a aula?",["Reconhecer o pecado, arrepender-se, crer em Jesus Cristo e confessá-Lo como Senhor e Salvador.","Ser perfeito, acumular riquezas e fazer boas obras.","Conhecer todos os livros da Bíblia e nunca errar.","Fazer sacrifícios pessoais e conquistar méritos."],0],
+["Quando a aula afirma que “ninguém merece a salvação”, isso significa que:",["Ninguém pode receber a salvação.","A salvação é conquistada somente pelos melhores.","A salvação não é um mérito humano, mas um presente da graça de Deus.","Somente pessoas perfeitas podem ser salvas."],2],
+["O que significa confiar na graça de Deus?",["Confiar que a salvação depende principalmente das nossas obras.","Reconhecer que a salvação é recebida pela graça mediante a fé em Cristo.","Acreditar que não precisamos de arrependimento.","Acreditar que o pecado não possui consequências."],1],
+["Segundo Romanos 10:9, citado na aula, quem confessa Jesus como Senhor e crê em seu coração:",["Será condenado.","Será salvo.","Não precisa mais crescer espiritualmente.","Receberá riquezas materiais."],1],
+["O que acontece quando alguém entrega sua vida a Cristo?",["Apenas muda sua religião.","Acontece uma verdadeira transformação.","Torna-se incapaz de pecar.","Deixa de precisar da Palavra de Deus."],1],
+["Qual destas é uma consequência de receber Jesus apresentada na aula?",["Receber perdão dos pecados.","Tornar-se perfeito imediatamente.","Nunca enfrentar dificuldades.","Receber riquezas automaticamente."],0],
+["Quem recebe Cristo:",["É reconciliado com Deus.","Continua separado de Deus.","Deixa de precisar da fé.","Torna-se independente de Deus."],0],
+["Qual destas alternativas apresenta corretamente mudanças na vida de quem recebe Cristo?",["Perdão, reconciliação com Deus, nova vida, esperança e promessa da vida eterna.","Riqueza, fama, ausência de problemas e poder político.","Perfeição humana, ausência de tentações e independência de Deus.","Conhecimento absoluto, poder e ausência de sofrimento."],0],
+["A salvação marca:",["O fim da caminhada espiritual.","O início de uma nova caminhada com Deus.","O fim da necessidade de crescimento.","O abandono da Palavra de Deus."],1],
+["Segundo a aula, a vida cristã:",["Começa com a salvação e continua em crescimento espiritual.","Termina quando a pessoa recebe a salvação.","Depende exclusivamente de boas obras.","Não envolve transformação."],0],
+["Qual é uma das principais lições da Aula 1?",["O homem salva a si mesmo por meio de boas obras.","Deus criou o homem para viver em comunhão com Ele.","O pecado não afetou a humanidade.","Jesus veio apenas para ensinar bons costumes."],1],
+["Como a aula descreve a cruz?",["Como uma derrota definitiva.","Como um acontecimento sem relação com a salvação.","Como vitória.","Como consequência das boas obras humanas."],2],
+["Por meio da morte e ressurreição de Cristo, quem se arrepende dos pecados e crê no Evangelho recebe:",["Perdão, nova vida e esperança da eternidade com Deus.","Apenas conhecimento religioso.","Riquezas e ausência de problemas.","Somente uma mudança de comportamento."],0],
+["Segundo a conclusão da aula, a salvação:",["Está disponível apenas para algumas pessoas.","Continua disponível para todos.","Foi encerrada depois da ressurreição.","Depende da capacidade financeira de cada pessoa."],1],
+["Qual convite de Jesus é citado na conclusão?",["“Ide por todo o mundo.”","“Aquele que perseverar será rico.”","“O que vem a mim de maneira nenhuma o lançarei fora.”","“Buscai primeiro as riquezas.”"],2],
+["O que João 3:16 destaca como motivo para Deus enviar Seu Filho?",["A justiça dos homens.","O amor de Deus pelo mundo.","As boas obras da humanidade.","A capacidade espiritual do ser humano."],1],
+["Qual é a principal esperança apresentada pelo Plano da Salvação?",["Conquistar uma vida sem dificuldades.","Receber a vida eterna e ser reconciliado com Deus por meio de Cristo.","Tornar-se superior às outras pessoas.","Alcançar sucesso material."],1],
+["Qual sequência representa melhor o Plano da Salvação apresentado na aula?",["Criação → pecado → separação → Jesus Cristo → salvação pela graça mediante a fé → nova vida.","Criação → boas obras → riqueza → salvação → pecado.","Pecado → boas obras → mérito → Jesus → independência de Deus.","Criação → pecado → condenação definitiva → impossibilidade de salvação."],0],
+["Qual frase resume melhor toda a Aula 1?",["O homem pode salvar a si mesmo por meio de seus esforços.","O pecado tornou a salvação impossível.","Deus, por amor, providenciou em Jesus Cristo o caminho de salvação e restauração da comunhão com Ele.","A salvação depende principalmente das boas obras."],2]
+];
+
+const quiz = document.getElementById("quiz");
+const answers = Array(questions.length).fill(null);
+let finished = false;
+
+questions.forEach((q,i)=>{
+  const card=document.createElement("section");
+  card.className="card";
+  card.innerHTML=`<div class="question">${i+1}. ${q[0]}</div><div class="options"></div><div class="explanation"></div>`;
+  const opts=card.querySelector(".options");
+  q[1].forEach((text,j)=>{
+    const b=document.createElement("button");
+    b.className="option";
+    b.type="button";
+    b.textContent=String.fromCharCode(65+j)+") "+text;
+    b.onclick=()=>answer(i,j,card);
+    opts.appendChild(b);
+  });
+  quiz.appendChild(card);
+});
+
+function answer(i,j,card){
+  if(finished || answers[i]!==null) return;
+  answers[i]=j;
+  const correct=j===questions[i][2];
+  const buttons=card.querySelectorAll(".option");
+  buttons.forEach((b,k)=>{
+    b.classList.add("disabled");
+    if(k===j) b.classList.add("selected",correct?"correct":"incorrect");
+  });
+  const exp=card.querySelector(".explanation");
+  exp.className="explanation "+(correct?"correct":"incorrect");
+  exp.textContent=correct?"✓ Resposta correta!":"✗ Resposta incorreta. A alternativa correta é "+String.fromCharCode(65+questions[i][2])+".";
+  updateProgress();
+}
+
+function updateProgress(){
+  const answered=answers.filter(a=>a!==null).length;
+  const correct=answers.filter((a,i)=>a!==null&&a===questions[i][2]).length;
+  const incorrect=answered-correct;
+  document.getElementById("progressText").textContent=`${answered} de ${questions.length} respondidas`;
+  document.getElementById("percentText").textContent=Math.round(answered/questions.length*100)+"%";
+  document.getElementById("correctBar").style.width=(correct/questions.length*100)+"%";
+  document.getElementById("incorrectBar").style.width=(incorrect/questions.length*100)+"%";
+  document.getElementById("finishBtn").disabled=answered!==questions.length;
+}
+
+document.getElementById("finishBtn").onclick=()=>{
+  if(answers.includes(null)) return;
+  finished=true;
+  const name=document.getElementById("fullName").value.trim();
+  if(!name){ alert("Digite seu nome completo antes de finalizar."); finished=false; document.getElementById("fullName").focus(); return; }
+  const correct=answers.filter((a,i)=>a===questions[i][2]).length;
+  const score=correct/questions.length*100;
+  document.getElementById("score").textContent=score.toFixed(0);
+  document.getElementById("status").textContent=score>70?"APROVADO — CERTIFICADO DISPONÍVEL":"NÃO APROVADO";
+  document.getElementById("status").style.color=score>70?"#15803d":"#dc2626";
+  document.getElementById("resultText").textContent=`Você acertou ${correct} de ${questions.length} questões.`;
+  document.getElementById("result").style.display="block";
+  if(score>70) document.getElementById("certificateBtn").classList.remove("hidden");
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+};
+
+document.getElementById("certificateBtn").onclick=()=>{
+  const name=document.getElementById("fullName").value.trim();
+  const correct=answers.filter((a,i)=>a===questions[i][2]).length;
+  const score=correct/questions.length*100;
+  document.getElementById("certName").textContent=name;
+  document.getElementById("certScore").textContent=`Nota final: ${score.toFixed(0)} pontos`;
+  document.getElementById("certificate").style.display="block";
+  document.getElementById("certificate").scrollIntoView({behavior:"smooth"});
+};
+
+document.getElementById("downloadBtn").onclick=()=>{
+  window.print();
+};
+</script>
+</body>
+</html>
