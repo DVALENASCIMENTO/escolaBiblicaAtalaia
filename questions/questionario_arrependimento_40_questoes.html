@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escola Bíblica Atalaia — Questionário: Arrependimento</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eefbf2,#f8fafc);color:#172033}.wrap{max-width:920px;margin:auto;padding:20px 14px 50px}.box{background:#fff;border:1px solid #dfe7e1;border-radius:18px;box-shadow:0 8px 28px #0f172a12;padding:24px;margin:14px 0}.head{text-align:center}.logo{width:78px;height:78px;border:3px solid #c9a227;border-radius:50%;display:grid;place-items:center;margin:auto;color:#15803d;font-size:35px;font-weight:900}.head h1{font-size:28px;margin:13px 0 6px}.muted{color:#64748b}.field{text-align:left;margin-top:20px}.field label{display:block;font-weight:bold;margin:9px 0 6px}.field input{width:100%;padding:13px;border:2px solid #e2e8f0;border-radius:10px;font-size:16px}.prog{position:sticky;top:8px;z-index:5;padding:12px;background:#fff;border-radius:14px;box-shadow:0 5px 20px #0001}.pi{display:flex;justify-content:space-between;font-size:14px;font-weight:bold;margin-bottom:8px}.track{height:14px;background:#e5e7eb;border-radius:20px;overflow:hidden;display:flex}.green{background:#22c55e}.red{background:#dc2626}.bar{height:100%;transition:.25s}.q{font-size:18px;font-weight:bold;line-height:1.45;margin-bottom:14px}.opts{display:grid;gap:9px}.opt{padding:13px;border:2px solid #e2e8f0;background:#fff;border-radius:11px;text-align:left;cursor:pointer;font-size:15px}.opt.correct{background:#dcfce7;border-color:#15803d;color:#166534}.opt.incorrect{background:#fee2e2;border-color:#dc2626;color:#991b1b}.opt.disabled{cursor:default}.feed{display:none;margin-top:10px;padding:10px;border-radius:9px;font-weight:bold;font-size:14px}.feed.show{display:block}.feed.good{background:#f0fdf4;color:#166534}.feed.bad{background:#fef2f2;color:#991b1b}.center{text-align:center}button{border:0;border-radius:11px;padding:14px 22px;font-weight:bold;font-size:16px;cursor:pointer;background:#15803d;color:#fff}button:disabled{background:#94a3b8}.result{display:none;text-align:center}.score{font-size:54px;font-weight:900;color:#15803d}.cert{display:none;margin-top:22px}.certificate{position:relative;min-height:570px;padding:50px 34px 35px;background:#fffdf4;border:1px solid #c9a227;outline:3px double #c9a227;outline-offset:-12px;box-shadow:0 12px 35px #0002;overflow:hidden}.certificate:before{content:"✦  ✦  ✦";position:absolute;top:22px;left:0;right:0;text-align:center;color:#c9a227;font-size:18px;letter-spacing:8px}.brand{font-weight:900;letter-spacing:3px;color:#15803d}.certificate h2{font-family:Georgia,serif;color:#7b5b10;font-size:40px;letter-spacing:5px;margin:28px 0 4px}.sub{letter-spacing:2px;color:#64748b;font-size:13px}.cname{font:700 31px Georgia,serif;border-bottom:1px solid #c9a227;max-width:650px;margin:25px auto 12px;padding-bottom:9px}.seal{position:absolute;right:30px;top:35px;width:88px;height:88px;border:4px double #b8860b;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:10px;font-weight:900;color:#8a6914;transform:rotate(7deg)}.ctext{max-width:700px;margin:10px auto;line-height:1.6;font-size:15px}.course{font-size:21px;color:#15803d;font-weight:900;margin:16px}.sig{margin:30px auto 0;border-top:1px solid #334155;width:280px;padding-top:7px;font-weight:bold}.sig small{display:block;color:#64748b;font-weight:normal;margin-top:3px}.gold{background:#7b5b10}.print{margin-top:18px}@media(max-width:600px){.seal{position:relative;top:auto;right:auto;margin:auto}.certificate h2{font-size:30px}.cname{font-size:25px}}@media print{body{background:#fff}.wrap> :not(.result){display:none!important}.result{display:block!important;box-shadow:none;border:0}.result>h2,.result>.score,.result>.status,.result>p,.result>#openCert{display:none}.cert{display:block!important}.print{display:none}.certificate{box-shadow:none}}
+
+/* ===== Alternativas sempre visíveis ===== */
+.opts{display:grid!important;gap:9px!important;width:100%!important}
+.opt{display:block!important;width:100%!important;min-height:54px!important;padding:15px 16px!important;margin:0!important;box-sizing:border-box!important;background:#fff!important;color:#111!important;border:2px solid #94a3b8!important;border-radius:11px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:17px!important;font-weight:600!important;line-height:1.45!important;text-align:left!important;opacity:1!important;visibility:visible!important;text-shadow:none!important}
+.opt:hover{background:#f1f5f9!important;border-color:#475569!important;color:#111!important}
+.opt.correct{background:#dcfce7!important;border-color:#15803d!important;color:#166534!important}
+.opt.incorrect{background:#fee2e2!important;border-color:#dc2626!important;color:#991b1b!important}
+.opt.disabled{opacity:1!important;visibility:visible!important}
+@media(max-width:600px){.opt{font-size:16px!important;padding:13px!important}}
+
+/* ===== Alternativas sempre visíveis ===== */
+.opts{display:grid!important;gap:9px!important;width:100%!important}
+.opt{display:block!important;width:100%!important;min-height:54px!important;padding:15px 16px!important;margin:0!important;box-sizing:border-box!important;background:#fff!important;color:#111!important;border:2px solid #94a3b8!important;border-radius:11px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:17px!important;font-weight:600!important;line-height:1.45!important;text-align:left!important;opacity:1!important;visibility:visible!important;text-shadow:none!important}
+.opt:hover{background:#f1f5f9!important;border-color:#475569!important;color:#111!important}
+.opt.correct{background:#dcfce7!important;border-color:#15803d!important;color:#166534!important}
+.opt.incorrect{background:#fee2e2!important;border-color:#dc2626!important;color:#991b1b!important}
+.opt.disabled{opacity:1!important;visibility:visible!important}
+@media(max-width:600px){.opt{font-size:16px!important;padding:13px!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="box head">
+<div class="logo">✝</div>
+<h1>Questionário — Arrependimento</h1>
+<p class="muted"><b>40 questões de múltipla escolha</b></p>
+<p><b>Escola Bíblica Atalaia</b></p>
+<p class="muted">Curso 1 — Fundamentos da Fé | Lição — Arrependimento: O Primeiro Passo para uma Nova Vida</p>
+<div class="field">
+<label>Nome completo</label><input id="name" placeholder="Digite seu nome completo">
+<label>CPF</label><input id="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00">
+</div>
+</section>
+<div class="prog"><div class="pi"><span id="pt">0 de 40 respondidas</span><span id="pct">0%</span></div><div class="track"><div id="gb" class="bar green"></div><div id="rb" class="bar red"></div></div></div>
+<main id="quiz"></main>
+<div class="center"><button id="finish" disabled>Finalizar questionário</button></div>
+<section id="result" class="box result">
+<h2>Resultado Final</h2><div id="score" class="score"></div><div id="status"></div><p id="rtext"></p>
+<button id="openCert" style="display:none">Abrir certificado</button>
+<div id="cert" class="cert"><div class="certificate">
+<div class="seal">✦<br>CERTIFICADO<br>ATENÇÃO E FÉ<br>✦</div>
+<div class="brand">ESCOLA BÍBLICA ATALAIA</div>
+<div class="sub">CURSO 1 • FUNDAMENTOS DA FÉ</div>
+<h2>CERTIFICADO</h2><div class="sub">DE CONCLUSÃO</div>
+<div id="cname" class="cname"></div>
+<p class="ctext">Certificamos que o(a) aluno(a) acima concluiu com aproveitamento o questionário referente à</p>
+<div class="course">LIÇÃO — ARREPENDIMENTO</div>
+<p class="ctext">O Primeiro Passo para uma Nova Vida — baseado no conteúdo estudado e em Atos 3:19.</p>
+<div id="ccpf" class="muted"></div><div id="cscore" class="muted"></div>
+<div class="sig">Diego Nascimento<small>Pastor Evangelista</small></div>
+</div><button id="download" class="gold print">Baixar certificado</button></div>
+</section>
+</div>
+<script>
+const questions=[["Segundo Atos 3:19, o que Pedro chama as pessoas a fazer?",["Arrepender-se e converter-se","Buscar riquezas","Fazer sacrifícios","Evitar os discípulos"],0],["Segundo a lição, o arrependimento é apresentado como:",["Um detalhe secundário da fé","Um dos fundamentos da fé cristã e o primeiro passo para uma vida transformada","Apenas uma emoção passageira","Uma tradição religiosa"],1],["Desde o início do ministério de Jesus até a pregação dos apóstolos, o que ocupou lugar central na mensagem do Evangelho?",["A riqueza","A política","O chamado ao arrependimento","A posição social"],2],["O que muitas pessoas confundem com arrependimento?",["Conversão e fé","Remorso ou tristeza passageira","Obediência e santidade","Perdão e restauração"],1],["Segundo a lição, o verdadeiro arrependimento envolve:",["Apenas sentir tristeza","Reconhecer o pecado, abandonar o caminho errado e voltar-se sinceramente para Deus","Esquecer os erros","Justificar os próprios erros"],1],["Arrepender-se significa:",["Mudar de mente, mudar de direção e abandonar o caminho do pecado para seguir a vontade de Deus","Apenas sentir culpa","Evitar qualquer responsabilidade","Continuar no mesmo caminho"],0],["O arrependimento é descrito como:",["Uma decisão consciente de voltar-se para o Senhor","Uma tristeza sem mudança","Uma obrigação social","Uma experiência apenas emocional"],0],["Na ilustração da estrada que leva ao precipício, a pessoa que percebe o perigo deve:",["Continuar andando","Parar, mudar de direção e seguir por um caminho seguro","Esperar outra pessoa","Voltar ao precipício"],1],["Espiritualmente, o arrependimento marca o momento em que:",["Deixamos o caminho do pecado para seguir Jesus Cristo","Começamos a confiar nas boas obras","Deixamos de buscar a Deus","Passamos a justificar nossos erros"],0],["Qual foi uma das primeiras mensagens anunciadas por Jesus?",["Arrependei-vos e crede no evangelho","Buscai riquezas","Construí templos","Evitai os pecadores"],0],["Em Marcos 1:15, Jesus uniu quais duas atitudes?",["Riqueza e posição","Arrependimento e fé no Evangelho","Tristeza e medo","Obras e tradição"],1],["Segundo a lição, primeiro reconhecemos nossa condição diante de Deus e depois:",["Colocamos nossa fé em Cristo como Senhor e Salvador","Confiamos em nossas obras","Buscamos reconhecimento","Evitamos a conversão"],0],["A lição afirma que não existe conversão verdadeira sem:",["Posição social","Arrependimento sincero","Riqueza","Conhecimento intelectual"],1],["Segundo Romanos 3:23, quem pecou?",["Somente os grandes pecadores","Somente os que não conhecem a Bíblia","Todos","Somente os incrédulos"],2],["O pecado, segundo a lição, fez o quê?",["Aproximou toda a humanidade de Deus","Separou toda a humanidade de Deus","Eliminou a graça","Tornou as boas obras inúteis"],1],["O arrependimento é um chamado para:",["Alguns grupos específicos","Todos","Somente líderes","Somente pessoas consideradas grandes pecadoras"],1],["Quem se arrepende verdadeiramente deixa de:",["Buscar a presença de Deus","Justificar seus erros","Confessar seus pecados","Obedecer à Palavra"],1],["Uma evidência do verdadeiro arrependimento é:",["Reconhecimento do pecado","Orgulho","Indiferença","Autossuficiência"],0],["Segundo 2 Coríntios 7:10, a tristeza segundo Deus produz:",["Riqueza","Arrependimento para a salvação","Fama","Poder"],1],["Qual é a diferença apresentada entre culpa e tristeza segundo Deus?",["A tristeza segundo Deus leva ao perdão, restauração e transformação","São exatamente a mesma coisa","A culpa sempre produz salvação","Nenhuma delas envolve mudança"],0],["Segundo Mateus 3:8, devemos produzir:",["Frutos dignos de arrependimento","Frutos de riqueza","Obras para obter fama","Sinais de poder"],0],["Quem antes vivia na mentira e demonstra verdadeiro arrependimento passa a:",["Amar a verdade","Esconder ainda mais os erros","Justificar a mentira","Evitar a Palavra"],0],["Quem alimentava o ódio e experimenta mudança de vida aprende a:",["Perdoar","Vingar-se","Ignorar os outros","Buscar reconhecimento"],0],["Quem vivia distante de Deus e experimenta verdadeiro arrependimento passa a:",["Buscar Sua presença diariamente","Evitar a oração","Confiar apenas em si mesmo","Abandonar a santidade"],0],["As mudanças produzidas pelo verdadeiro arrependimento são apresentadas como fruto:",["Da ação do Espírito Santo","Da posição social","Da riqueza","Da fama"],0],["Qual personagem da parábola é apresentado como um dos maiores exemplos de arrependimento?",["O filho pródigo","O sacerdote","O soldado romano","O pescador"],0],["Depois de desperdiçar sua herança, o filho pródigo:",["Reconheceu seu erro","Continuou longe do pai","Negou sua responsabilidade","Abandonou a casa para sempre"],0],["A expressão usada para descrever o momento de reconhecimento do filho pródigo é:",["Caiu em si","Perdeu a esperança","Fugiu de casa","Esqueceu o pai"],0],["O que o filho pródigo decidiu fazer depois de reconhecer seu erro?",["Levantar-se e voltar para casa","Continuar vivendo longe do pai","Buscar outra herança","Esconder-se"],0],["Como o pai recebeu o filho que retornou?",["Correu ao seu encontro, abraçou-o e restaurou sua dignidade","Rejeitou-o imediatamente","Ignorou-o","Mandou-o embora"],0],["A parábola do filho pródigo revela:",["O coração de Deus","A importância da riqueza","O poder da posição social","A necessidade de esconder os erros"],0],["Segundo 1 João 1:9, se confessarmos nossos pecados, Deus é:",["Fiel e justo para nos perdoar e purificar","Indiferente","Incapaz de perdoar","Contrário à restauração"],0],["Deus promete, além de perdoar:",["Purificar e restaurar","Condenar imediatamente","Afastar quem retorna","Dar riqueza material"],0],["A graça de Deus continua disponível para:",["Todo aquele que se arrepende","Somente líderes","Somente quem nunca pecou","Somente pessoas perfeitas"],0],["O arrependimento deve acontecer:",["Somente no início da caminhada","Ao longo de toda a vida cristã","Apenas uma vez por ano","Somente antes da conversão"],1],["Quando falhamos, devemos:",["Examinar nosso coração, confessar nossos pecados e buscar novamente a direção do Senhor","Esconder os erros","Justificar nossas atitudes","Abandonar a caminhada com Deus"],0],["Uma vida de arrependimento é marcada por:",["Humildade, dependência de Deus e desejo constante de viver em santidade","Orgulho e autossuficiência","Busca por fama","Indiferença espiritual"],0],["Segundo a conclusão da lição, o arrependimento:",["Conduz ao perdão, restaura a comunhão com o Senhor e inaugura uma nova vida em Cristo","Elimina a necessidade de fé","Garante ausência de dificuldades","Depende das riquezas"],0],["O convite apresentado na conclusão é:",["Hoje é tempo de voltar para Deus","Hoje é tempo de abandonar a fé","Hoje é tempo de esconder os pecados","Hoje é tempo de confiar somente nas próprias obras"],0],["A oração final pede que nossa vida produza:",["Frutos dignos de arrependimento","Riquezas materiais","Reconhecimento social","Poder político"],0]];
+const answers=Array(questions.length).fill(null), quiz=document.getElementById('quiz'); let finished=false;
+questions.forEach((q,i)=>{
+ const c=document.createElement('section'); c.className='box';
+ c.innerHTML='<div class="q">'+(i+1)+'. '+q[0]+'</div><div class="opts"></div><div class="feed"></div>';
+ q[1].forEach((t,j)=>{
+  const b=document.createElement('button'); b.className='opt';
+  b.textContent=String.fromCharCode(65+j)+') '+t;
+  b.onclick=()=>answer(i,j,c); c.querySelector('.opts').appendChild(b);
+ });
+ quiz.appendChild(c);
+});
+function answer(i,j,c){
+ if(finished||answers[i]!==null)return;
+ answers[i]=j; const ok=j===questions[i][2];
+ c.querySelectorAll('.opt').forEach((b,k)=>{b.classList.add('disabled');if(k===j)b.classList.add(ok?'correct':'incorrect')});
+ const f=c.querySelector('.feed'); f.className='feed show '+(ok?'good':'bad');
+ f.textContent=ok?'✓ Resposta correta!':'✗ Incorreta. Resposta correta: '+String.fromCharCode(65+questions[i][2])+'.';
+ update();
+}
+function update(){
+ const a=answers.filter(x=>x!==null).length,co=answers.filter((x,i)=>x!==null&&x===questions[i][2]).length;
+ document.getElementById('pt').textContent=a+' de '+questions.length+' respondidas';
+ document.getElementById('pct').textContent=Math.round(a/questions.length*100)+'%';
+ document.getElementById('gb').style.width=co/questions.length*100+'%';
+ document.getElementById('rb').style.width=(a-co)/questions.length*100+'%';
+ document.getElementById('finish').disabled=a!==questions.length;
+}
+document.getElementById('cpf').addEventListener('input',e=>{
+ let v=e.target.value.replace(/\D/g,'').slice(0,11);
+ v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+ e.target.value=v;
+});
+document.getElementById('finish').onclick=()=>{
+ const name=document.getElementById('name').value.trim(),cpf=document.getElementById('cpf').value.replace(/\D/g,'');
+ if(!name)return alert('Digite o nome completo.');
+ if(cpf.length!==11)return alert('Digite um CPF com 11 dígitos.');
+ finished=true;
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/questions.length*100;
+ document.getElementById('score').textContent=sc.toFixed(0);
+ document.getElementById('status').textContent=sc>70?'APROVADO — CERTIFICADO DISPONÍVEL':'NÃO APROVADO';
+ document.getElementById('status').style.color=sc>70?'#15803d':'#dc2626';
+ document.getElementById('rtext').textContent='Você acertou '+co+' de '+questions.length+' questões.';
+ if(sc>70)document.getElementById('openCert').style.display='inline-block';
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+};
+document.getElementById('openCert').onclick=()=>{
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/questions.length*100;
+ document.getElementById('cname').textContent=document.getElementById('name').value.trim();
+ document.getElementById('ccpf').textContent='CPF: '+document.getElementById('cpf').value;
+ document.getElementById('cscore').textContent='Nota final: '+sc.toFixed(0)+' pontos';
+ document.getElementById('cert').style.display='block';
+ document.getElementById('cert').scrollIntoView({behavior:'smooth'});
+};
+document.getElementById('download').onclick=()=>window.print();
+</script>
+</body></html>
