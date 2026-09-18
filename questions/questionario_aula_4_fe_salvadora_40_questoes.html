@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escola Bíblica Atalaia — Aula 4</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eefbf2,#f8fafc);color:#172033}
+.wrap{max-width:920px;margin:auto;padding:20px 14px 50px}
+.box{background:#fff;border:1px solid #dfe7e1;border-radius:18px;box-shadow:0 8px 28px #0f172a12;padding:24px;margin:14px 0}
+.head{text-align:center}
+.logo{width:78px;height:78px;border:3px solid #c9a227;border-radius:50%;display:grid;place-items:center;margin:auto;color:#15803d;font-size:35px;font-weight:900}
+.head h1{font-size:28px;margin:13px 0 6px}
+.muted{color:#64748b}
+.field{text-align:left;margin-top:20px}
+.field label{display:block;font-weight:bold;margin:9px 0 6px}
+.field input{width:100%;padding:13px;border:2px solid #e2e8f0;border-radius:10px;font-size:16px}
+.prog{position:sticky;top:8px;z-index:5;padding:12px;background:#fff;border-radius:14px;box-shadow:0 5px 20px #0001}
+.pi{display:flex;justify-content:space-between;font-size:14px;font-weight:bold;margin-bottom:8px}
+.track{height:14px;background:#e5e7eb;border-radius:20px;overflow:hidden;display:flex}
+.green{background:#22c55e} .red{background:#dc2626}
+.bar{height:100%;transition:.25s}
+.q{font-size:18px;font-weight:bold;line-height:1.45;margin-bottom:14px}
+.opts{display:grid!important;gap:9px!important;width:100%!important}
+.opt{display:block!important;width:100%!important;min-height:54px!important;padding:15px 16px!important;margin:0!important;box-sizing:border-box!important;background:#fff!important;color:#111!important;border:2px solid #94a3b8!important;border-radius:11px!important;font-family:Arial,Helvetica,sans-serif!important;font-size:17px!important;font-weight:600!important;line-height:1.45!important;text-align:left!important;opacity:1!important;visibility:visible!important;cursor:pointer}
+.opt:hover{background:#f1f5f9!important;border-color:#475569!important;color:#111!important}
+.opt.correct{background:#dcfce7!important;border-color:#15803d!important;color:#166534!important}
+.opt.incorrect{background:#fee2e2!important;border-color:#dc2626!important;color:#991b1b!important}
+.opt.disabled{cursor:default;opacity:1!important;visibility:visible!important}
+.feed{display:none;margin-top:10px;padding:10px;border-radius:9px;font-weight:bold;font-size:14px}
+.feed.show{display:block} .feed.good{background:#f0fdf4;color:#166534} .feed.bad{background:#fef2f2;color:#991b1b}
+.center{text-align:center}
+button{border:0;border-radius:11px;padding:14px 22px;font-weight:bold;font-size:16px;cursor:pointer;background:#15803d;color:#fff}
+button:disabled{background:#94a3b8}
+.result{display:none;text-align:center}
+.score{font-size:54px;font-weight:900;color:#15803d}
+.cert{display:none;margin-top:22px}
+.certificate{position:relative;min-height:570px;padding:50px 34px 35px;background:#fffdf4;border:1px solid #c9a227;outline:3px double #c9a227;outline-offset:-12px;box-shadow:0 12px 35px #0002;overflow:hidden}
+.certificate:before{content:"✦  ✦  ✦";position:absolute;top:22px;left:0;right:0;text-align:center;color:#c9a227;font-size:18px;letter-spacing:8px}
+.brand{font-weight:900;letter-spacing:3px;color:#15803d}
+.certificate h2{font-family:Georgia,serif;color:#7b5b10;font-size:40px;letter-spacing:5px;margin:28px 0 4px}
+.sub{letter-spacing:2px;color:#64748b;font-size:13px}
+.cname{font:700 31px Georgia,serif;border-bottom:1px solid #c9a227;max-width:650px;margin:25px auto 12px;padding-bottom:9px}
+.seal{position:absolute;right:30px;top:35px;width:88px;height:88px;border:4px double #b8860b;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:10px;font-weight:900;color:#8a6914;transform:rotate(7deg)}
+.ctext{max-width:700px;margin:10px auto;line-height:1.6;font-size:15px}
+.course{font-size:21px;color:#15803d;font-weight:900;margin:16px}
+.sig{margin:30px auto 0;border-top:1px solid #334155;width:280px;padding-top:7px;font-weight:bold}
+.sig small{display:block;color:#64748b;font-weight:normal;margin-top:3px}
+.gold{background:#7b5b10} .print{margin-top:18px}
+@media(max-width:600px){.opt{font-size:16px!important;padding:13px!important}.seal{position:relative;top:auto;right:auto;margin:auto}.certificate h2{font-size:30px}.cname{font-size:25px}}
+@media print{body{background:#fff}.wrap> :not(.result){display:none!important}.result{display:block!important;box-shadow:none;border:0}.result>h2,.result>.score,.result>.status,.result>p,.result>#openCert{display:none}.cert{display:block!important}.print{display:none}.certificate{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="box head">
+<div class="logo">✝</div>
+<h1>Questionário — Fé Salvadora</h1>
+<p class="muted"><b>40 questões de múltipla escolha</b></p>
+<p><b>Escola Bíblica Atalaia</b></p>
+<p class="muted">Curso 1 — Fundamentos da Fé | Aula 4</p>
+<div class="field">
+<label>Nome completo</label><input id="name" placeholder="Digite seu nome completo">
+<label>CPF</label><input id="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00">
+</div>
+</section>
+<div class="prog"><div class="pi"><span id="pt">0 de 40 respondidas</span><span id="pct">0%</span></div><div class="track"><div id="gb" class="bar green"></div><div id="rb" class="bar red"></div></div></div>
+<main id="quiz"></main>
+<div class="center"><button id="finish" disabled>Finalizar questionário</button></div>
+<section id="result" class="box result">
+<h2>Resultado Final</h2><div id="score" class="score"></div><div id="status"></div><p id="rtext"></p>
+<button id="openCert" style="display:none">Abrir certificado</button>
+<div id="cert" class="cert"><div class="certificate">
+<div class="seal">✦<br>CERTIFICADO<br>ATENÇÃO E FÉ<br>✦</div>
+<div class="brand">ESCOLA BÍBLICA ATALAIA</div>
+<div class="sub">CURSO 1 • FUNDAMENTOS DA FÉ</div>
+<h2>CERTIFICADO</h2><div class="sub">DE CONCLUSÃO</div>
+<div id="cname" class="cname"></div>
+<p class="ctext">Certificamos que o(a) aluno(a) acima concluiu com aproveitamento o questionário referente à</p>
+<div class="course">AULA 4 — FÉ SALVADORA</div>
+<p class="ctext">Compreendendo, conforme o conteúdo estudado, a salvação pela graça mediante a fé, a natureza da fé salvadora, seus efeitos na vida cristã e seu crescimento pela Palavra de Deus.</p>
+<div id="ccpf" class="muted"></div><div id="cscore" class="muted"></div>
+<div class="sig">Diego Nascimento<small>Pastor Evangelista</small></div>
+</div><button id="download" class="gold print">Baixar certificado</button></div>
+</section>
+</div>
+<script>
+const questions=[["Segundo Efésios 2:8–9, a salvação é recebida:",["Pelas obras humanas","Pela graça, mediante a fé","Pela posição social","Pelas tradições religiosas"],1],["Segundo a Aula 4, a fé salvadora é:",["Apenas acreditar que Deus existe","Uma confiança verdadeira em Deus e em Sua obra de salvação","Somente uma emoção religiosa","Uma forma de obter riquezas"],1],["O que significa receber a salvação pela fé?",["Confiar em Cristo e receber a salvação como dom de Deus","Comprar a salvação com boas obras","Confiar apenas em si mesmo","Depender de tradições humanas"],0],["A salvação não é resultado:",["Da graça de Deus","Da fé em Cristo","Das obras humanas como mérito para obtê-la","Da obra de Cristo"],2],["Segundo Hebreus 11:1, a fé é:",["A certeza das coisas que se esperam e a convicção de fatos que se não veem","A ausência de qualquer dúvida sobre assuntos humanos","Uma tradição familiar","Uma recompensa por boas obras"],0],["A fé verdadeira nos leva a:",["Confiar em Deus mesmo sem ver","Confiar somente no que podemos tocar","Abandonar a Palavra de Deus","Buscar apenas benefícios materiais"],0],["Qual personagem é apresentado como exemplo de fé por construir a arca conforme a orientação de Deus?",["Noé","Josué","Moisés","Abraão"],0],["Abraão é apresentado como exemplo de alguém que:",["Obedeceu a Deus pela fé","Recusou-se a obedecer a Deus","Confiou apenas em suas próprias forças","Seguiu somente as tradições dos homens"],0],["Moisés é citado na aula como exemplo de:",["Fé","Riqueza","Poder político","Fama"],0],["Josué é apresentado entre os exemplos de pessoas que:",["Viveram pela fé","Não confiaram em Deus","Rejeitaram a Palavra","Confiaram somente na força humana"],0],["A fé salvadora é diferente de uma fé que apenas:",["Reconhece intelectualmente que Deus existe","Confia em Cristo","Entrega a vida a Jesus","Deseja obedecer a Deus"],0],["Segundo Tiago 2:19, até os demônios:",["Creem que Deus é um só e tremem","Recebem a salvação","Vivem em obediência a Cristo","São exemplos de fé salvadora"],0],["O reconhecimento de que Deus existe, sozinho:",["Não é apresentado como fé salvadora","Garante automaticamente a salvação","Substitui a obediência","É suficiente para transformar a vida"],0],["A fé salvadora inclui reconhecer Jesus como:",["Senhor","Apenas um mestre","Somente um profeta","Um líder político"],0],["A fé salvadora envolve confiar:",["Na morte e ressurreição de Jesus","Somente nas capacidades humanas","Nas riquezas materiais","Nas tradições familiares"],0],["Quem possui fé salvadora deseja:",["Entregar a vida a Cristo e obedecer à Sua vontade","Viver sem compromisso com Deus","Buscar somente vantagens materiais","Ignorar a Palavra de Deus"],0],["Segundo Romanos 5:1, sendo justificados pela fé, temos:",["Paz com Deus por meio de nosso Senhor Jesus Cristo","Riqueza material garantida","Ausência de problemas","Poder político"],0],["A fé em Cristo produz, segundo a aula:",["Reconciliação com Deus","Distanciamento de Deus","Independência de Deus","Apenas conhecimento intelectual"],0],["Entre os resultados apresentados da fé estão:",["Perdão, reconciliação, adoção e esperança eterna","Riqueza, fama e poder","Ausência de sofrimento e problemas","Sucesso profissional garantido"],0],["A verdadeira paz mencionada na aula é:",["Paz com Deus","Ausência de qualquer dificuldade","Garantia de riqueza","Ausência de responsabilidades"],0],["A fé transforma:",["Nossa maneira de viver","Somente nossa aparência","Apenas nossa situação financeira","Somente nosso conhecimento histórico"],0],["A fé não significa que o cristão:",["Nunca enfrentará dificuldades","Pode confiar em Deus","Pode permanecer firme nas tribulações","Deve viver pela Palavra"],0],["Jesus declarou que no mundo teríamos:",["Aflições","Riquezas garantidas","Uma vida sem problemas","Ausência de oposição"],0],["Mesmo diante das aflições, Jesus ensinou:",["Tende bom ânimo; eu venci o mundo","Abandonem a fé","Confiem apenas em vocês mesmos","Procurem evitar toda dificuldade"],0],["A fé ajuda o cristão a:",["Permanecer firme em meio às dificuldades","Nunca enfrentar problemas","Viver sem oração","Ignorar a Palavra de Deus"],0],["Segundo Romanos 10:17, a fé vem:",["Pelo ouvir, e o ouvir pela palavra de Cristo","Pelas riquezas","Pela posição social","Pela fama"],0],["Uma forma apresentada para o crescimento da fé é:",["Ouvir e meditar na Palavra de Deus","Evitar a Bíblia","Confiar somente nos sentimentos","Abandonar a oração"],0],["Além de ouvir a Palavra, a aula destaca a importância de:",["Praticá-la","Ignorá-la","Substituí-la por tradições","Usá-la somente em momentos de dificuldade"],0],["A oração contribui para:",["O crescimento da fé","A substituição da Palavra","A busca por riqueza","A eliminação de todas as dificuldades"],0],["Lembrar das respostas e livramentos de Deus pode:",["Fortalecer a fé","Eliminar a necessidade de oração","Substituir a leitura bíblica","Garantir ausência de problemas"],0],["A fé salvadora está fundamentada:",["Em Jesus Cristo e em Sua obra de salvação","No mérito humano","Na tradição familiar","Na capacidade intelectual"],0],["Segundo a aula, confiar em Cristo significa:",["Descansar nEle e entregar a vida a Ele","Apenas conhecer fatos sobre Jesus","Buscar somente benefícios materiais","Viver sem obedecer à Palavra"],0],["A fé salvadora conduz a uma vida de:",["Obediência a Deus","Independência de Deus","Desobediência consciente","Busca por fama"],0],["A fé pode existir sem que a pessoa:",["Veja fisicamente aquilo em que confia","Leia qualquer texto","Tenha responsabilidades","Conheça outras pessoas"],0],["Qual é o texto base da Aula 4 — Fé Salvadora?",["Efésios 2:8–9","João 14:6","Atos 3:19","Mateus 16:16"],0],["Qual texto é apresentado como complementar sobre a natureza da fé?",["Hebreus 11:1","Gênesis 1:1","João 1:1","Salmos 23:1"],0],["Qual texto é usado para mostrar que a fé produz paz com Deus?",["Romanos 5:1","Romanos 10:17","Tiago 2:19","João 16:33"],0],["Qual texto é usado para mostrar como a fé cresce?",["Romanos 10:17","Efésios 2:8","Romanos 5:1","Hebreus 11:1"],0],["A fé salvadora, conforme a aula, deve resultar em:",["Uma vida transformada e orientada pela vontade de Deus","Apenas conhecimento sobre a Bíblia","Busca por benefícios materiais","Ausência de toda tribulação"],0],["Qual afirmação resume a Aula 4?",["A salvação é recebida pela graça, mediante a fé, e a fé verdadeira transforma a vida","A salvação é conquistada somente por boas obras","A fé elimina todas as dificuldades da vida","A fé consiste apenas em acreditar que Deus existe"],0]];
+const answers=Array(questions.length).fill(null),quiz=document.getElementById('quiz'); let finished=false;
+questions.forEach((q,i)=>{
+ const c=document.createElement('section');c.className='box';
+ c.innerHTML='<div class="q">'+(i+1)+'. '+q[0]+'</div><div class="opts"></div><div class="feed"></div>';
+ q[1].forEach((t,j)=>{const b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+j)+') '+t;b.onclick=()=>answer(i,j,c);c.querySelector('.opts').appendChild(b)});
+ quiz.appendChild(c);
+});
+function answer(i,j,c){
+ if(finished||answers[i]!==null)return;
+ answers[i]=j;const ok=j===questions[i][2];
+ c.querySelectorAll('.opt').forEach((b,k)=>{b.classList.add('disabled');if(k===j)b.classList.add(ok?'correct':'incorrect')});
+ const f=c.querySelector('.feed');f.className='feed show '+(ok?'good':'bad');f.textContent=ok?'✓ Resposta correta!':'✗ Incorreta. Resposta correta: '+String.fromCharCode(65+questions[i][2])+'.';
+ update();
+}
+function update(){
+ const a=answers.filter(x=>x!==null).length,co=answers.filter((x,i)=>x!==null&&x===questions[i][2]).length;
+ document.getElementById('pt').textContent=a+' de '+questions.length+' respondidas';
+ document.getElementById('pct').textContent=Math.round(a/questions.length*100)+'%';
+ document.getElementById('gb').style.width=co/questions.length*100+'%';
+ document.getElementById('rb').style.width=(a-co)/questions.length*100+'%';
+ document.getElementById('finish').disabled=a!==questions.length;
+}
+document.getElementById('cpf').addEventListener('input',e=>{
+ let v=e.target.value.replace(/\D/g,'').slice(0,11);
+ v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+ e.target.value=v;
+});
+document.getElementById('finish').onclick=()=>{
+ const name=document.getElementById('name').value.trim(),cpf=document.getElementById('cpf').value.replace(/\D/g,'');
+ if(!name)return alert('Digite o nome completo.');
+ if(cpf.length!==11)return alert('Digite um CPF com 11 dígitos.');
+ finished=true;
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/questions.length*100;
+ document.getElementById('score').textContent=sc.toFixed(0);
+ document.getElementById('status').textContent=sc>70?'APROVADO — CERTIFICADO DISPONÍVEL':'NÃO APROVADO';
+ document.getElementById('status').style.color=sc>70?'#15803d':'#dc2626';
+ document.getElementById('rtext').textContent='Você acertou '+co+' de '+questions.length+' questões.';
+ if(sc>70)document.getElementById('openCert').style.display='inline-block';
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+};
+document.getElementById('openCert').onclick=()=>{
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/questions.length*100;
+ document.getElementById('cname').textContent=document.getElementById('name').value.trim();
+ document.getElementById('ccpf').textContent='CPF: '+document.getElementById('cpf').value;
+ document.getElementById('cscore').textContent='Nota final: '+sc.toFixed(0)+' pontos';
+ document.getElementById('cert').style.display='block';
+ document.getElementById('cert').scrollIntoView({behavior:'smooth'});
+};
+document.getElementById('download').onclick=()=>window.print();
+</script>
+</body>
+</html>
