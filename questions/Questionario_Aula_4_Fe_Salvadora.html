@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Escola Bíblica Atalaia — Aula 4</title>
+<title>Questionário Aula 4 - Fé Salvadora</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eefbf2,#f8fafc);color:#172033}
@@ -56,7 +56,7 @@ button:disabled{background:#94a3b8}
 <div class="wrap">
 <section class="box head">
 <div class="logo">✝</div>
-<h1>Questionário — Fé Salvadora</h1>
+<h1>Questionário Aula 4 - Fé Salvadora</h1>
 <p class="muted"><b>40 questões de múltipla escolha</b></p>
 <p><b>Escola Bíblica Atalaia</b></p>
 <p class="muted">Curso 1 — Fundamentos da Fé | Aula 4</p>
@@ -71,18 +71,61 @@ button:disabled{background:#94a3b8}
 <section id="result" class="box result">
 <h2>Resultado Final</h2><div id="score" class="score"></div><div id="status"></div><p id="rtext"></p>
 <button id="openCert" style="display:none">Abrir certificado</button>
-<div id="cert" class="cert"><div class="certificate">
-<div class="seal">✦<br>CERTIFICADO<br>ATENÇÃO E FÉ<br>✦</div>
-<div class="brand">ESCOLA BÍBLICA ATALAIA</div>
-<div class="sub">CURSO 1 • FUNDAMENTOS DA FÉ</div>
-<h2>CERTIFICADO</h2><div class="sub">DE CONCLUSÃO</div>
-<div id="cname" class="cname"></div>
-<p class="ctext">Certificamos que o(a) aluno(a) acima concluiu com aproveitamento o questionário referente à</p>
-<div class="course">AULA 4 — FÉ SALVADORA</div>
-<p class="ctext">Compreendendo, conforme o conteúdo estudado, a salvação pela graça mediante a fé, a natureza da fé salvadora, seus efeitos na vida cristã e seu crescimento pela Palavra de Deus.</p>
-<div id="ccpf" class="muted"></div><div id="cscore" class="muted"></div>
-<div class="sig">Diego Nascimento<small>Pastor Evangelista</small></div>
-</div><button id="download" class="gold print">Baixar certificado</button></div>
+
+<div id="cert" class="cert">
+<div class="certificate">
+  <div style="text-align:center">
+    <div style="font-size:60px;color:#15803d">✝</div>
+    <div class="brand">ESCOLA BÍBLICA ATALAIA</div>
+    <div class="sub">CURSO 1 • FUNDAMENTOS DA FÉ</div>
+    <h2>CERTIFICADO</h2>
+    <div class="sub">DE CONCLUSÃO</div>
+  </div>
+
+  <div id="cname" class="cname"></div>
+
+  <p class="ctext">Certificamos que o(a) aluno(a) acima concluiu com aproveitamento o questionário referente à</p>
+
+  <div class="course">AULA 4 — FÉ SALVADORA</div>
+
+  <p class="ctext">
+    Compreendendo, conforme o conteúdo estudado, a salvação pela graça mediante a fé,
+    a natureza da fé salvadora, seus efeitos na vida cristã e seu crescimento pela Palavra de Deus.
+  </p>
+
+  <div style="display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin:18px 0;color:#475569;font-weight:bold">
+      <span id="ccpf"></span>
+      <span id="cscore"></span>
+      <span id="cquestions"></span>
+  </div>
+
+  <div style="margin:22px auto;padding:12px 24px;max-width:720px;border-top:1px solid #d4b35a;border-bottom:1px solid #d4b35a;font-family:Georgia,serif;font-style:italic;text-align:center;color:#334155">
+      “Porque pela graça sois salvos, mediante a fé; e isto não vem de vós; é dom de Deus.”
+      <br><b style="color:#7b5b10">Efésios 2:8</b>
+  </div>
+
+  <div style="margin:25px auto 0;text-align:center;width:360px">
+      <svg viewBox="0 0 500 120" width="320" height="90" xmlns="http://www.w3.org/2000/svg">
+        <text x="18" y="78"
+              font-family="'Brush Script MT','Lucida Handwriting','Segoe Script',cursive"
+              font-size="58"
+              fill="#153E75"
+              font-style="italic">
+          Diego Nascimento
+        </text>
+      </svg>
+
+      <div style="border-top:1px solid #334155;padding-top:6px;font:700 16px Georgia,serif;color:#153E75">
+          Diego Nascimento
+      </div>
+      <div style="color:#64748b;font-size:12px">Pastor Evangelista</div>
+  </div>
+
+</div>
+
+<button id="download" class="gold print">Baixar certificado</button>
+</div>
+
 </section>
 </div>
 <script>
@@ -133,6 +176,7 @@ document.getElementById('openCert').onclick=()=>{
  document.getElementById('cname').textContent=document.getElementById('name').value.trim();
  document.getElementById('ccpf').textContent='CPF: '+document.getElementById('cpf').value;
  document.getElementById('cscore').textContent='Nota final: '+sc.toFixed(0)+' pontos';
+  document.getElementById('cquestions').textContent='Questões: '+questions.length+' ('+co+' acertos)';
  document.getElementById('cert').style.display='block';
  document.getElementById('cert').scrollIntoView({behavior:'smooth'});
 };

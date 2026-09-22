@@ -24,6 +24,29 @@
 .opt.incorrect{background:#fee2e2!important;border-color:#dc2626!important;color:#991b1b!important}
 .opt.disabled{opacity:1!important;visibility:visible!important}
 @media(max-width:600px){.opt{font-size:16px!important;padding:13px!important}}
+
+/* ===== CERTIFICADO PROFISSIONAL ===== */
+.certificate{position:relative;min-height:190mm;padding:20mm 18mm 14mm;background:#fffdf4;border:1px solid #c9a227;outline:3px double #c9a227;outline-offset:-12px;box-shadow:0 12px 35px #0002;overflow:hidden;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.certificate .wm{position:absolute;z-index:0;left:50%;top:50%;width:58%;transform:translate(-50%,-50%);opacity:.075;pointer-events:none}
+.certificate .cert-content{position:relative;z-index:2;text-align:center}
+.certificate .school-logo{width:92px;height:92px;object-fit:contain;display:block;margin:0 auto 8px;border-radius:50%}
+.certificate .brand{font-weight:900;letter-spacing:2px;color:#15803d}
+.certificate h2{font-family:Georgia,serif;color:#166534;font-size:38px;letter-spacing:5px;margin:10px 0 2px}
+.certificate .sub{letter-spacing:1.5px;color:#64748b;font-size:13px}
+.certificate .cname{font:700 29px Georgia,serif;border-bottom:1px solid #c9a227;max-width:720px;margin:18px auto 10px;padding-bottom:7px}
+.certificate .ctext{max-width:760px;margin:8px auto;line-height:1.5;font-size:15px}
+.certificate .course{font-size:20px;color:#15803d;font-weight:900;margin:12px}
+.certificate .details{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:10px auto;font-size:14px;color:#475569}
+.certificate .verse{max-width:760px;margin:12px auto 8px;padding:10px 18px;border-top:1px solid #d4b35a;border-bottom:1px solid #d4b35a;font-family:Georgia,serif;font-size:14px;line-height:1.45;color:#334155;font-style:italic}
+.certificate .verse strong{display:block;margin-top:5px;color:#7b5b10;font-style:normal;font-size:13px}
+.signature-block{margin:14px auto 0;width:300px;text-align:center;position:relative;z-index:3}
+.signature-block .rubrica{font-family:cursive;font-size:42px;line-height:1;height:48px;color:#173b73}
+.signature-block .sig-name{font:700 16px Georgia,serif;color:#173b73;border-top:1px solid #334155;padding-top:5px}
+.signature-block small{display:block;color:#64748b;font-weight:normal;margin-top:3px;font-size:12px}
+@page{size:A4 landscape;margin:0}
+@media(max-width:600px){.certificate{padding:16mm 10mm 10mm}.certificate .school-logo{width:72px;height:72px}.certificate h2{font-size:30px}.certificate .cname{font-size:25px}.certificate .ctext{font-size:13px}.certificate .course{font-size:17px}}
+@media print{body{background:#fff!important}.wrap> :not(.result){display:none!important}.result{display:block!important;box-shadow:none!important;border:0!important;margin:0!important;padding:0!important}.result>h2,.result>.score,.result>.status,.result>p,.result>#openCert{display:none!important}.cert{display:block!important;margin:0!important}.certificate{width:100vw;min-height:190mm;height:190mm;box-shadow:none!important;margin:0!important;page-break-inside:avoid}.print{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -45,19 +68,26 @@
 <section id="result" class="box result">
 <h2>Resultado Final</h2><div id="score" class="score"></div><div id="status"></div><p id="rtext"></p>
 <button id="openCert" style="display:none">Abrir certificado</button>
-<div id="cert" class="cert"><div class="certificate">
-<div class="seal">✦<br>CERTIFICADO<br>ATENÇÃO E FÉ<br>✦</div>
+<div id="cert" class="cert">
+<div class="certificate">
+<img class="wm" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='82' fill='none' stroke='%2315803d' stroke-width='5'/%3E%3Cpath d='M100 35v130M35 100h130' stroke='%2315803d' stroke-width='8'/%3E%3C/svg%3E">
+<div class="cert-content">
+<img class="school-logo" alt="Escola Bíblica Atalaia" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23fffdf4' stroke='%23c9a227' stroke-width='4'/%3E%3Cpath d='M50 18v64M25 50h50' stroke='%2315803d' stroke-width='8'/%3E%3C/svg%3E">
 <div class="brand">ESCOLA BÍBLICA ATALAIA</div>
 <div class="sub">CURSO 1 • FUNDAMENTOS DA FÉ</div>
-<h2>CERTIFICADO</h2><div class="sub">DE CONCLUSÃO</div>
+<h2>CERTIFICADO</h2>
+<div class="sub">DE CONCLUSÃO</div>
 <div id="cname" class="cname"></div>
 <p class="ctext">Certificamos que o(a) aluno(a) acima concluiu com aproveitamento o questionário referente à</p>
 <div class="course">LIÇÃO — ARREPENDIMENTO</div>
 <p class="ctext">O Primeiro Passo para uma Nova Vida — baseado no conteúdo estudado e em Atos 3:19.</p>
-<div id="ccpf" class="muted"></div><div id="cscore" class="muted"></div>
-<div class="sig">Diego Nascimento<small>Pastor Evangelista</small></div>
-</div><button id="download" class="gold print">Baixar certificado</button></div>
-</section>
+<div class="details"><span id="ccpf"></span><span id="cscore"></span></div>
+<div class="verse">“Arrependei-vos, pois, e convertei-vos, para que sejam apagados os vossos pecados.”<strong>Atos 3:19</strong></div>
+<div class="signature-block"><div class="rubrica">✍</div><div class="sig-name">Diego Nascimento</div><small>Pastor Evangelista</small></div>
+</div>
+</div>
+<button id="download" class="gold print">Baixar certificado</button>
+</div></section>
 </div>
 <script>
 const questions=[["Segundo Atos 3:19, o que Pedro chama as pessoas a fazer?",["Arrepender-se e converter-se","Buscar riquezas","Fazer sacrifícios","Evitar os discípulos"],0],["Segundo a lição, o arrependimento é apresentado como:",["Um detalhe secundário da fé","Um dos fundamentos da fé cristã e o primeiro passo para uma vida transformada","Apenas uma emoção passageira","Uma tradição religiosa"],1],["Desde o início do ministério de Jesus até a pregação dos apóstolos, o que ocupou lugar central na mensagem do Evangelho?",["A riqueza","A política","O chamado ao arrependimento","A posição social"],2],["O que muitas pessoas confundem com arrependimento?",["Conversão e fé","Remorso ou tristeza passageira","Obediência e santidade","Perdão e restauração"],1],["Segundo a lição, o verdadeiro arrependimento envolve:",["Apenas sentir tristeza","Reconhecer o pecado, abandonar o caminho errado e voltar-se sinceramente para Deus","Esquecer os erros","Justificar os próprios erros"],1],["Arrepender-se significa:",["Mudar de mente, mudar de direção e abandonar o caminho do pecado para seguir a vontade de Deus","Apenas sentir culpa","Evitar qualquer responsabilidade","Continuar no mesmo caminho"],0],["O arrependimento é descrito como:",["Uma decisão consciente de voltar-se para o Senhor","Uma tristeza sem mudança","Uma obrigação social","Uma experiência apenas emocional"],0],["Na ilustração da estrada que leva ao precipício, a pessoa que percebe o perigo deve:",["Continuar andando","Parar, mudar de direção e seguir por um caminho seguro","Esperar outra pessoa","Voltar ao precipício"],1],["Espiritualmente, o arrependimento marca o momento em que:",["Deixamos o caminho do pecado para seguir Jesus Cristo","Começamos a confiar nas boas obras","Deixamos de buscar a Deus","Passamos a justificar nossos erros"],0],["Qual foi uma das primeiras mensagens anunciadas por Jesus?",["Arrependei-vos e crede no evangelho","Buscai riquezas","Construí templos","Evitai os pecadores"],0],["Em Marcos 1:15, Jesus uniu quais duas atitudes?",["Riqueza e posição","Arrependimento e fé no Evangelho","Tristeza e medo","Obras e tradição"],1],["Segundo a lição, primeiro reconhecemos nossa condição diante de Deus e depois:",["Colocamos nossa fé em Cristo como Senhor e Salvador","Confiamos em nossas obras","Buscamos reconhecimento","Evitamos a conversão"],0],["A lição afirma que não existe conversão verdadeira sem:",["Posição social","Arrependimento sincero","Riqueza","Conhecimento intelectual"],1],["Segundo Romanos 3:23, quem pecou?",["Somente os grandes pecadores","Somente os que não conhecem a Bíblia","Todos","Somente os incrédulos"],2],["O pecado, segundo a lição, fez o quê?",["Aproximou toda a humanidade de Deus","Separou toda a humanidade de Deus","Eliminou a graça","Tornou as boas obras inúteis"],1],["O arrependimento é um chamado para:",["Alguns grupos específicos","Todos","Somente líderes","Somente pessoas consideradas grandes pecadoras"],1],["Quem se arrepende verdadeiramente deixa de:",["Buscar a presença de Deus","Justificar seus erros","Confessar seus pecados","Obedecer à Palavra"],1],["Uma evidência do verdadeiro arrependimento é:",["Reconhecimento do pecado","Orgulho","Indiferença","Autossuficiência"],0],["Segundo 2 Coríntios 7:10, a tristeza segundo Deus produz:",["Riqueza","Arrependimento para a salvação","Fama","Poder"],1],["Qual é a diferença apresentada entre culpa e tristeza segundo Deus?",["A tristeza segundo Deus leva ao perdão, restauração e transformação","São exatamente a mesma coisa","A culpa sempre produz salvação","Nenhuma delas envolve mudança"],0],["Segundo Mateus 3:8, devemos produzir:",["Frutos dignos de arrependimento","Frutos de riqueza","Obras para obter fama","Sinais de poder"],0],["Quem antes vivia na mentira e demonstra verdadeiro arrependimento passa a:",["Amar a verdade","Esconder ainda mais os erros","Justificar a mentira","Evitar a Palavra"],0],["Quem alimentava o ódio e experimenta mudança de vida aprende a:",["Perdoar","Vingar-se","Ignorar os outros","Buscar reconhecimento"],0],["Quem vivia distante de Deus e experimenta verdadeiro arrependimento passa a:",["Buscar Sua presença diariamente","Evitar a oração","Confiar apenas em si mesmo","Abandonar a santidade"],0],["As mudanças produzidas pelo verdadeiro arrependimento são apresentadas como fruto:",["Da ação do Espírito Santo","Da posição social","Da riqueza","Da fama"],0],["Qual personagem da parábola é apresentado como um dos maiores exemplos de arrependimento?",["O filho pródigo","O sacerdote","O soldado romano","O pescador"],0],["Depois de desperdiçar sua herança, o filho pródigo:",["Reconheceu seu erro","Continuou longe do pai","Negou sua responsabilidade","Abandonou a casa para sempre"],0],["A expressão usada para descrever o momento de reconhecimento do filho pródigo é:",["Caiu em si","Perdeu a esperança","Fugiu de casa","Esqueceu o pai"],0],["O que o filho pródigo decidiu fazer depois de reconhecer seu erro?",["Levantar-se e voltar para casa","Continuar vivendo longe do pai","Buscar outra herança","Esconder-se"],0],["Como o pai recebeu o filho que retornou?",["Correu ao seu encontro, abraçou-o e restaurou sua dignidade","Rejeitou-o imediatamente","Ignorou-o","Mandou-o embora"],0],["A parábola do filho pródigo revela:",["O coração de Deus","A importância da riqueza","O poder da posição social","A necessidade de esconder os erros"],0],["Segundo 1 João 1:9, se confessarmos nossos pecados, Deus é:",["Fiel e justo para nos perdoar e purificar","Indiferente","Incapaz de perdoar","Contrário à restauração"],0],["Deus promete, além de perdoar:",["Purificar e restaurar","Condenar imediatamente","Afastar quem retorna","Dar riqueza material"],0],["A graça de Deus continua disponível para:",["Todo aquele que se arrepende","Somente líderes","Somente quem nunca pecou","Somente pessoas perfeitas"],0],["O arrependimento deve acontecer:",["Somente no início da caminhada","Ao longo de toda a vida cristã","Apenas uma vez por ano","Somente antes da conversão"],1],["Quando falhamos, devemos:",["Examinar nosso coração, confessar nossos pecados e buscar novamente a direção do Senhor","Esconder os erros","Justificar nossas atitudes","Abandonar a caminhada com Deus"],0],["Uma vida de arrependimento é marcada por:",["Humildade, dependência de Deus e desejo constante de viver em santidade","Orgulho e autossuficiência","Busca por fama","Indiferença espiritual"],0],["Segundo a conclusão da lição, o arrependimento:",["Conduz ao perdão, restaura a comunhão com o Senhor e inaugura uma nova vida em Cristo","Elimina a necessidade de fé","Garante ausência de dificuldades","Depende das riquezas"],0],["O convite apresentado na conclusão é:",["Hoje é tempo de voltar para Deus","Hoje é tempo de abandonar a fé","Hoje é tempo de esconder os pecados","Hoje é tempo de confiar somente nas próprias obras"],0],["A oração final pede que nossa vida produza:",["Frutos dignos de arrependimento","Riquezas materiais","Reconhecimento social","Poder político"],0]];
@@ -115,6 +145,13 @@ document.getElementById('openCert').onclick=()=>{
  document.getElementById('cert').style.display='block';
  document.getElementById('cert').scrollIntoView({behavior:'smooth'});
 };
-document.getElementById('download').onclick=()=>window.print();
+document.getElementById('download').onclick=()=>{
+ const cert=document.querySelector('#cert .certificate');
+ if(!cert)return;
+ const w=window.open('','_blank');
+ if(!w){window.print();return;}
+ w.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Certificado — Escola Bíblica Atalaia</title><style>*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}@page{size:A4 landscape;margin:0}.certificate{position:relative;width:297mm;height:190mm;padding:20mm 18mm 14mm;background:#fffdf4;border:1px solid #c9a227;outline:3px double #c9a227;outline-offset:-12px;overflow:hidden;print-color-adjust:exact;-webkit-print-color-adjust:exact}.wm{position:absolute;z-index:0;left:50%;top:50%;width:58%;transform:translate(-50%,-50%);opacity:.075}.cert-content{position:relative;z-index:2;text-align:center}.school-logo{width:92px;height:92px;object-fit:contain;display:block;margin:0 auto 8px;border-radius:50%}.brand{font-weight:900;letter-spacing:2px;color:#15803d}.sub{letter-spacing:1.5px;color:#64748b;font-size:13px}h2{font-family:Georgia,serif;color:#166534;font-size:38px;letter-spacing:5px;margin:10px 0 2px}.cname{font:700 29px Georgia,serif;border-bottom:1px solid #c9a227;max-width:720px;margin:18px auto 10px;padding-bottom:7px}.ctext{max-width:760px;margin:8px auto;line-height:1.5;font-size:15px}.course{font-size:20px;color:#15803d;font-weight:900;margin:12px}.details{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:10px auto;font-size:14px;color:#475569}.verse{max-width:760px;margin:12px auto 8px;padding:10px 18px;border-top:1px solid #d4b35a;border-bottom:1px solid #d4b35a;font-family:Georgia,serif;font-size:14px;line-height:1.45;color:#334155;font-style:italic}.verse strong{display:block;margin-top:5px;color:#7b5b10;font-style:normal;font-size:13px}.signature-block{margin:14px auto 0;width:300px;text-align:center}.rubrica{font-family:cursive;font-size:42px;line-height:1;height:48px;color:#173b73}.sig-name{font:700 16px Georgia,serif;color:#173b73;border-top:1px solid #334155;padding-top:5px}.signature-block small{display:block;color:#64748b;font-size:12px;margin-top:3px}</style></head><body>'+cert.outerHTML+'<script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script></body></html>');
+ w.document.close();
+};
 </script>
 </body></html>
