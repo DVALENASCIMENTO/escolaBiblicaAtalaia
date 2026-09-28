@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escola Bíblica Atalaia — Aula 10 — Jejum</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eefbf2,#f8fafc);color:#172033}
+.wrap{max-width:920px;margin:auto;padding:20px 14px 50px}
+.box{background:#fff;border:1px solid #dfe7e1;border-radius:18px;box-shadow:0 8px 28px #0f172a12;padding:24px;margin:14px 0}
+.head{text-align:center}
+.logo{width:78px;height:78px;border:3px solid #c9a227;border-radius:50%;display:grid;place-items:center;margin:auto;color:#15803d;font-size:35px;font-weight:900}
+.head h1{font-size:28px;margin:13px 0 6px}
+.muted{color:#64748b}
+.field{text-align:left;margin-top:20px}
+.field label{display:block;font-weight:bold;margin:9px 0 6px}
+.field input{width:100%;padding:13px;border:2px solid #e2e8f0;border-radius:10px;font-size:16px}
+.prog{position:sticky;top:8px;z-index:5;padding:12px;background:#fff;border-radius:14px;box-shadow:0 5px 20px #0001}
+.pi{display:flex;justify-content:space-between;font-size:14px;font-weight:bold;margin-bottom:8px}
+.track{height:14px;background:#e5e7eb;border-radius:20px;overflow:hidden;display:flex}
+.green{background:#22c55e}.red{background:#dc2626}.bar{height:100%;transition:.25s}
+.q{font-size:18px;font-weight:bold;line-height:1.45;margin-bottom:14px}
+.opts{display:grid!important;gap:9px!important;width:100%!important}
+.opt{display:block!important;width:100%!important;min-height:54px!important;padding:15px 16px!important;margin:0!important;background:#fff!important;color:#111!important;border:2px solid #94a3b8!important;border-radius:11px!important;font-family:Arial,sans-serif!important;font-size:17px!important;font-weight:600!important;line-height:1.45!important;text-align:left!important;cursor:pointer}
+.opt:hover{background:#f1f5f9!important;border-color:#475569!important}
+.opt.correct{background:#dcfce7!important;border-color:#15803d!important;color:#166534!important}
+.opt.incorrect{background:#fee2e2!important;border-color:#dc2626!important;color:#991b1b!important}
+.opt.disabled{cursor:default}
+.feed{display:none;margin-top:10px;padding:10px;border-radius:9px;font-weight:bold;font-size:14px}
+.feed.show{display:block}.feed.good{background:#f0fdf4;color:#166534}.feed.bad{background:#fef2f2;color:#991b1b}
+.center{text-align:center}
+button{border:0;border-radius:11px;padding:14px 22px;font-weight:bold;font-size:16px;cursor:pointer;background:#15803d;color:#fff}
+button:disabled{background:#94a3b8}
+.result{display:none;text-align:center}
+.score{font-size:54px;font-weight:900;color:#15803d}
+.cert{display:none;margin-top:22px}
+.certificate{position:relative;min-height:190mm;padding:20mm 18mm 14mm;background:#fffdf4;border:1px solid #c9a227;outline:3px double #c9a227;outline-offset:-12px;box-shadow:0 12px 35px #0002;overflow:hidden;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.certificate:before{content:"✦  ✦  ✦";position:absolute;top:22px;left:0;right:0;text-align:center;color:#c9a227;font-size:18px;letter-spacing:8px}
+.cert-content{position:relative;z-index:2;text-align:center}
+.school-logo{width:92px;height:92px;display:grid;place-items:center;margin:0 auto 8px;border:4px double #b8860b;border-radius:50%;font-size:43px;font-weight:900;color:#15803d;background:#fff}
+.brand{font-weight:900;letter-spacing:2px;color:#15803d}
+.certificate h2{font-family:Georgia,serif;color:#166534;font-size:38px;letter-spacing:5px;margin:10px 0 2px}
+.sub{letter-spacing:1.5px;color:#64748b;font-size:13px}
+.cname{font:700 29px Georgia,serif;border-bottom:1px solid #c9a227;max-width:720px;margin:18px auto 10px;padding-bottom:7px}
+.ctext{max-width:760px;margin:8px auto;line-height:1.5;font-size:15px}
+.course{font-size:20px;color:#15803d;font-weight:900;margin:12px}
+.details{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:10px auto;font-size:14px;color:#475569}
+.verse{max-width:760px;margin:12px auto 8px;padding:10px 18px;border-top:1px solid #d4b35a;border-bottom:1px solid #d4b35a;font-family:Georgia,serif;font-size:14px;line-height:1.45;color:#334155;font-style:italic}
+.verse strong{display:block;margin-top:5px;color:#7b5b10;font-style:normal;font-size:13px}
+.signature-block{margin:14px auto 0;width:300px;text-align:center}
+.rubrica{display:block;width:290px;height:72px;margin:0 auto -4px}
+.sig-name{font:700 16px Georgia,serif;color:#173b73;border-top:1px solid #334155;padding-top:5px}
+.signature-block small{display:block;color:#64748b;font-weight:normal;margin-top:3px;font-size:12px}
+.gold{background:#7b5b10}.print{margin-top:18px}
+@media(max-width:600px){.certificate h2{font-size:30px}.cname{font-size:25px}.opt{font-size:16px!important;padding:13px!important}}
+@page{size:A4 landscape;margin:0}
+@media print{
+body{background:#fff!important}
+.wrap> :not(.result){display:none!important}
+.result{display:block!important;box-shadow:none!important;border:0!important;margin:0!important;padding:0!important}
+.result>h2,.result>.score,.result>.status,.result>p,.result>#openCert{display:none!important}
+.cert{display:block!important;margin:0!important}
+.certificate{width:100vw;min-height:190mm;height:190mm;box-shadow:none!important;margin:10mm 0 0!important;page-break-inside:avoid}
+.print{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="box head">
+<div class="logo">✝</div>
+<h1>Questionário — Jejum</h1>
+<p class="muted"><b>40 questões de múltipla escolha</b></p>
+<p><b>Escola Bíblica Atalaia</b></p>
+<p class="muted">Curso 1 — Fundamentos da Fé | Aula 10</p>
+<div class="field">
+<label>Nome completo</label>
+<input id="name" placeholder="Digite seu nome completo" autocomplete="name">
+<label>CPF</label>
+<input id="cpf" maxlength="14" inputmode="numeric" placeholder="000.000.000-00">
+</div>
+</section>
+
+<div class="prog">
+<div class="pi"><span id="pt">0 de 40 respondidas</span><span id="pct">0%</span></div>
+<div class="track"><div id="gb" class="bar green"></div><div id="rb" class="bar red"></div></div>
+</div>
+
+<main id="quiz"></main>
+<div class="center"><button id="finish" disabled>Finalizar questionário</button></div>
+
+<section id="result" class="box result">
+<h2>Resultado Final</h2>
+<div id="score" class="score"></div>
+<div id="status"></div>
+<p id="rtext"></p>
+<button id="openCert" style="display:none">Abrir certificado</button>
+
+<div id="cert" class="cert">
+<div class="certificate">
+<div class="cert-content">
+<div class="school-logo">✝</div>
+<div class="brand">ESCOLA BÍBLICA ATALAIA</div>
+<div class="sub">CURSO 1 • FUNDAMENTOS DA FÉ</div>
+<h2>CERTIFICADO</h2>
+<div class="sub">DE CONCLUSÃO</div>
+<div id="cname" class="cname"></div>
+<p class="ctext">Certificamos que o(a) aluno(a) acima identificado(a) concluiu o questionário de avaliação referente à:</p>
+<div class="course">AULA 10 — JEJUM</div>
+<div class="details">
+<span id="ccpf">CPF:</span>
+<span id="cquestions">Quantidade de questões: 40</span>
+<span id="cscore">Nota final:</span>
+</div>
+<div class="verse">“Quando jejuardes, não vos mostreis contristados como os hipócritas.”<strong>Mateus 6:16</strong></div>
+<div class="signature-block">
+<svg class="rubrica" viewBox="0 0 520 140" aria-label="Rúbrica">
+<path d="M30 93 C72 45,95 116,130 78 S180 54,210 88 C235 112,258 55,290 82 S350 103,382 70 C415 35,438 90,485 62" fill="none" stroke="#173b73" stroke-width="5" stroke-linecap="round"/>
+<path d="M55 112 C145 137,286 137,462 126" fill="none" stroke="#173b73" stroke-width="4" stroke-linecap="round"/>
+</svg>
+<div class="sig-name">Diego Nascimento</div>
+<small>Pastor Evangelista</small>
+</div>
+</div>
+</div>
+<button type="button" id="download" class="gold print">Baixar certificado</button>
+</div>
+</section>
+</div>
+
+<script>
+const questions = [
+["O que é o jejum, segundo a aula?",["Uma obrigação religiosa para todos os cristãos.","Uma abstinência voluntária, geralmente de alimentos, acompanhada de oração e busca de Deus.","Uma forma de demonstrar resistência física.","Uma maneira de receber elogios."],1],
+["Qual é o texto bíblico principal da aula?",["João 3:16-18","Salmos 23:1-6","Mateus 6:16-18","Atos 2:1-4"],2],
+["Segundo a aula, o jejum está relacionado principalmente à:",["Busca de Deus.","Demonstração de força física.","Competição espiritual.","Obtenção de riquezas."],0],
+["O que Jesus ensinou em Mateus 6 sobre a motivação para jejuar?",["Devemos mostrar nosso sofrimento.","Devemos anunciar publicamente o nosso jejum.","Devemos jejuar para receber elogios.","Devemos buscar a Deus sem procurar reconhecimento dos homens."],3],
+["Quando Jesus falou sobre o jejum em Mateus 6:16, Ele disse:",["Se jejuares.","Quando jejuares.","Talvez jejuares.","Sempre jejuares sete dias."],1],
+["O que havia de errado com o jejum dos hipócritas mencionados por Jesus?",["Eles jejuavam durante pouco tempo.","Eles não conheciam as Escrituras.","Eles queriam ser vistos pelos homens.","Eles não faziam jejum coletivo."],2],
+["Para quem deve ser direcionado o verdadeiro jejum?",["Para os homens.","Para a igreja.","Para a família.","Para Deus."],3],
+["Segundo Mateus 6:17-18, Jesus ensinou que aquele que jejua deve:",["Mostrar tristeza publicamente.","Anunciar o início do jejum.","Ungir a cabeça e lavar o rosto.","Contar aos outros quanto tempo ficará em jejum."],2],
+["Por que a motivação é importante no jejum?",["Porque duas pessoas podem realizar a mesma prática exterior com motivações diferentes.","Porque somente pastores podem jejuar.","Porque o jejum precisa ser sempre coletivo.","Porque quanto maior o sofrimento, maior o valor espiritual."],0],
+["Qual pergunta a pessoa deve fazer ao examinar sua motivação?",["Quantas pessoas sabem que estou jejuando?","Estou buscando a Deus ou reconhecimento?","Quem está jejuando comigo?","Quanto tempo consigo ficar sem comer?"],1],
+["O jejum está profundamente relacionado à:",["Política.","Prosperidade material.","Oração.","Competição."],2],
+["Segundo Atos 13:2-3, a igreja estava:",["Servindo ao Senhor e jejuando.","Fazendo uma competição de jejum.","Procurando reconhecimento público.","Recusando-se a orar."],0],
+["Durante o jejum, podemos:",["Interceder pela família.","Buscar elogios.","Demonstrar superioridade.","Manipular outras pessoas."],0],
+["Qual destas atividades é apresentada como apropriada durante o jejum?",["Meditar nas Escrituras.","Procurar reconhecimento.","Fazer competição.","Exibir o próprio sofrimento."],0],
+["O que o jejum não deve fazer?",["Aproximar-nos de Deus.","Acompanhar a oração.","Manipular Deus.","Promover reflexão."],2],
+["A frase “Vou jejuar para Deus me dar o que estou pedindo” revela qual entendimento incorreto?",["Que o jejum pode ser usado para manipular Deus.","Que devemos orar.","Que precisamos ler a Bíblia.","Que devemos examinar o coração."],0],
+["Segundo a aula, o propósito do jejum é:",["Mudar Deus para que Ele faça nossa vontade.","Colocar nossa vontade diante de Deus.","Obrigar Deus a responder imediatamente.","Comprar uma bênção."],1],
+["No Getsêmani, Jesus demonstrou uma atitude de:",["Orgulho.","Competição.","Submissão à vontade do Pai.","Busca de reconhecimento."],2],
+["Qual frase expressa a atitude ensinada no Getsêmani?",["A minha vontade deve prevalecer.","Deus precisa fazer aquilo que pedi.","Não seja como eu quero, e sim como tu queres.","Quero que todos conheçam meu pedido."],2],
+["O jejum também pode estar associado ao:",["Arrependimento.","Orgulho.","Entretenimento.","Reconhecimento humano."],0],
+["Qual passagem é apresentada na aula em relação ao jejum e arrependimento?",["Joel 2:12","Gênesis 1:1","João 11:35","Apocalipse 22:21"],0],
+["Durante o jejum, devemos também:",["Examinar o coração.","Julgar outras pessoas.","Procurar reconhecimento.","Demonstrar superioridade."],0],
+["Qual pergunta faz parte do exame do coração?",["Quantas pessoas sabem do meu jejum?","Existe algum pecado que precisa ser abandonado?","Quanto tempo posso suportar?","Como posso impressionar os outros?"],1],
+["Isaías 58 apresenta uma confrontação contra pessoas que:",["Nunca tinham ouvido falar de jejum.","Jejuavam, mas continuavam praticando injustiças.","Faziam somente jejuns coletivos.","Oravam demais."],1],
+["Segundo Isaías 58, o problema estava em:",["O jejum ser longo demais.","A prática religiosa exterior não ser acompanhada de transformação de vida.","As pessoas orarem durante o jejum.","A leitura da Bíblia."],1],
+["O verdadeiro jejum deve conduzir o coração à:",["Competição.","Obediência.","Superioridade.","Fama."],1],
+["Qual destas afirmações está de acordo com a aula?",["Podemos jejuar e continuar deliberadamente vivendo no pecado.","O jejum não tem relação com transformação interior.","O verdadeiro jejum deve produzir transformação.","Somente a abstinência alimentar importa."],2],
+["Segundo Mateus 4:4, Jesus declarou:",["O homem viverá somente de pão.","Não só de pão viverá o homem.","O homem não precisa da Palavra.","O alimento é mais importante que a Palavra."],1],
+["O jejum nos lembra que:",["Somos independentes de Deus.","Dependemos de Deus.","Precisamos competir com outros cristãos.","Nossa força física é suficiente."],1],
+["Qual passagem apresenta a imagem da corça que anseia por águas correntes?",["Salmos 42:1","Mateus 6:18","Joel 2:12","Mateus 26:39"],0],
+["Qual é um exemplo de jejum parcial apresentado na aula?",["Daniel 10:2-3.","João 1:1.","Gênesis 12:1.","Salmos 1:1."],0],
+["O que caracteriza o jejum completo apresentado na aula?",["Restrição de apenas um tipo de alimento.","Abstinência total de alimentos durante determinado período.","Apenas jejum coletivo.","Somente jejum durante a noite."],1],
+["Qual destas passagens é apresentada como exemplo de jejum coletivo?",["2 Crônicas 20:3.","João 3:16.","Romanos 8:1.","Salmos 119:105."],0],
+["O jejum deve ser transformado em competição?",["Sim, para descobrir quem tem mais fé.","Sim, porque quanto mais tempo sem comer, maior a recompensa.","Não, pois o objetivo é buscar a Deus.","Sim, especialmente entre os membros da igreja."],2],
+["Durante o jejum, podemos dedicar tempo à:",["Oração, leitura da Palavra, meditação e adoração.","Competição e demonstração de resistência.","Busca de elogios.","Divulgação do sofrimento."],0],
+["O que a aula ensina sobre responsabilidade e saúde?",["A pessoa deve ignorar os limites do corpo.","Colocar a saúde em risco demonstra mais fé.","O jejum não exige imprudência e os limites do corpo devem ser considerados.","Todos devem fazer exatamente o mesmo tipo de jejum."],2],
+["O jejum pode nos ensinar:",["Dependência e domínio próprio.","Orgulho e superioridade.","Competição e reconhecimento.","Independência de Deus."],0],
+["Qual alternativa apresenta algo que o jejum não é?",["Uma forma de manipular Deus.","Uma prática que pode acompanhar a oração.","Um momento de busca de Deus.","Uma oportunidade de examinar o coração."],0],
+["Qual é o princípio central da Aula 10?",["O jejum é simplesmente deixar alguma coisa.","O jejum é buscar alguém.","O jejum é demonstrar resistência física.","O jejum é receber elogios."],1],
+["Complete corretamente o princípio apresentado na conclusão: “O jejum não deve produzir apenas um corpo privado de alimento. Deve conduzir o coração a uma maior...”",["independência de Deus.","competição espiritual.","dependência de Deus.","demonstração pública."],2]
+];
+
+const answers=Array(questions.length).fill(null),quiz=document.getElementById('quiz');let finished=false;
+questions.forEach((q,i)=>{
+ const c=document.createElement('section');c.className='box';
+ c.innerHTML='<div class="q">'+(i+1)+'. '+q[0]+'</div><div class="opts"></div><div class="feed"></div>';
+ q[1].forEach((t,j)=>{
+   const b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+j)+') '+t;
+   b.onclick=()=>answer(i,j,c);c.querySelector('.opts').appendChild(b);
+ });
+ quiz.appendChild(c);
+});
+function answer(i,j,c){
+ if(finished||answers[i]!==null)return;
+ answers[i]=j;const ok=j===questions[i][2];
+ c.querySelectorAll('.opt').forEach((b,k)=>{b.classList.add('disabled');if(k===j)b.classList.add(ok?'correct':'incorrect')});
+ const f=c.querySelector('.feed');f.className='feed show '+(ok?'good':'bad');
+ f.textContent=ok?'✓ Resposta correta!':'✗ Incorreta. Resposta correta: '+String.fromCharCode(65+questions[i][2])+'.';
+ update();
+}
+function update(){
+ const a=answers.filter(x=>x!==null).length,co=answers.filter((x,i)=>x!==null&&x===questions[i][2]).length;
+ document.getElementById('pt').textContent=a+' de '+questions.length+' respondidas';
+ document.getElementById('pct').textContent=Math.round(a/questions.length*100)+'%';
+ document.getElementById('gb').style.width=co/questions.length*100+'%';
+ document.getElementById('rb').style.width=(a-co)/questions.length*100+'%';
+ document.getElementById('finish').disabled=a!==questions.length;
+}
+document.getElementById('cpf').addEventListener('input',e=>{
+ let v=e.target.value.replace(/\D/g,'').slice(0,11);
+ v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');e.target.value=v;
+});
+document.getElementById('finish').onclick=()=>{
+ const name=document.getElementById('name').value.trim(),cpf=document.getElementById('cpf').value.replace(/\D/g,'');
+ if(!name)return alert('Digite o nome completo.');
+ if(cpf.length!==11)return alert('Digite um CPF com 11 dígitos.');
+ finished=true;
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/40*100;
+ document.getElementById('score').textContent=sc.toFixed(0);
+ document.getElementById('status').textContent=sc>70?'APROVADO — CERTIFICADO DISPONÍVEL':'NÃO APROVADO';
+ document.getElementById('status').style.color=sc>70?'#15803d':'#dc2626';
+ document.getElementById('rtext').textContent='Você acertou '+co+' de 40 questões.';
+ if(sc>70)document.getElementById('openCert').style.display='inline-block';
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+};
+document.getElementById('openCert').onclick=()=>{
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/40*100;
+ document.getElementById('cname').textContent=document.getElementById('name').value.trim();
+ document.getElementById('ccpf').textContent='CPF: '+document.getElementById('cpf').value;
+ document.getElementById('cquestions').textContent='Quantidade de questões: '+questions.length;
+ document.getElementById('cscore').textContent='Nota final: '+sc.toFixed(0)+' pontos';
+ document.getElementById('cert').style.display='block';
+ document.getElementById('cert').scrollIntoView({behavior:'smooth'});
+};
+function printCertificate(){
+ const name=document.getElementById('name').value.trim(),cpf=document.getElementById('cpf').value;
+ if(!name){alert('Digite o nome completo.');return}
+ if(cpf.replace(/\D/g,'').length!==11){alert('Digite um CPF com 11 dígitos.');return}
+ const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/questions.length*100;
+ if(sc<=70){alert('O certificado está disponível somente após aprovação.');return}
+ document.getElementById('cname').textContent=name;
+ document.getElementById('ccpf').textContent='CPF: '+cpf;
+ document.getElementById('cquestions').textContent='Quantidade de questões: '+questions.length;
+ document.getElementById('cscore').textContent='Nota final: '+sc.toFixed(0)+' pontos';
+ document.getElementById('cert').style.display='block';
+ document.getElementById('result').style.display='block';
+ const certificate=document.querySelector('#cert .certificate');
+ const iframe=document.createElement('iframe');
+ iframe.style.position='fixed';iframe.style.right='0';iframe.style.bottom='0';iframe.style.width='1px';iframe.style.height='1px';
+ iframe.style.border='0';iframe.style.opacity='0';document.body.appendChild(iframe);
+ const printDoc=iframe.contentDocument,styles=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n');
+ printDoc.open();
+ printDoc.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Certificado</title><style>'+styles+'@page{size:A4 landscape;margin:0}html,body{margin:0!important;padding:0!important;background:#fff!important;width:297mm!important;min-height:210mm!important}.certificate{display:block!important;width:297mm!important;height:190mm!important;min-height:190mm!important;margin:10mm auto 0!important;box-shadow:none!important;overflow:hidden!important}body{font-family:Arial,sans-serif}</style></head><body>');
+ printDoc.write(certificate.outerHTML);
+ printDoc.write('</body></html>');printDoc.close();
+ const printWindow=iframe.contentWindow;let printed=false;
+ const cleanup=()=>setTimeout(()=>iframe.remove(),1000);
+ const doPrint=()=>{if(printed)return;printed=true;printWindow.focus();printWindow.print();cleanup()};
+ setTimeout(doPrint,500);
+}
+document.getElementById('download').addEventListener('click',printCertificate);
+</script>
+</body>
+</html>
