@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Questionário Aula 11 - Santificação</title>
+<style>
+*{box-sizing:border-box} body{font-family:Arial,sans-serif;background:#eefbf2;margin:0;color:#172018}
+.wrap{max-width:900px;margin:auto;padding:20px}.box{background:#fff;padding:22px;border-radius:18px;margin:16px 0;box-shadow:0 4px 15px #0002}
+.logo{width:78px;height:78px;border:3px solid #c9a227;border-radius:50%;display:grid;place-items:center;margin:auto;color:#15803d;font-size:34px;font-weight:bold}
+h1,h2,p{text-align:center} input{width:100%;padding:12px;margin:8px 0 16px;border:2px solid #ddd;border-radius:10px;font-size:16px}
+.track{height:14px;background:#ddd;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:#16a34a;border-radius:20px;transition:.25s}
+.opt{display:block;width:100%;padding:12px;margin:8px 0;border:2px solid #64748B;border-radius:10px;background:#fff;color:#000;font-size:17px;font-weight:600;cursor:pointer;text-align:left;opacity:1;visibility:visible}
+.opt:disabled{cursor:default}.correct{background:#DCFCE7!important;border-color:#15803D!important;color:#14532D!important}.incorrect{background:#FEE2E2!important;border-color:#DC2626!important;color:#7F1D1D!important}
+button{background:#15803d;color:#fff;padding:14px 22px;border:none;border-radius:10px;font-weight:bold;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
+.result{display:none;text-align:center}.cert{display:none;margin-top:20px}
+@media(max-width:600px){.wrap{padding:10px}.box{padding:16px}.opt{font-size:16px}}
+@media print{body{background:#fff}.wrap> .box:not(#result),#quiz,#finish,.result>h2,.result>h1,.result>p,#openCert,#downloadCert{display:none!important}.cert{display:block!important}.box{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="box">
+<div class="logo">✝</div>
+<h1>ESCOLA BÍBLICA ATALAIA</h1>
+<h2>CURSO 1 — FUNDAMENTOS DA FÉ</h2>
+<h2 style="color:#b8860b">AULA 11 — SANTIFICAÇÃO</h2>
+<p><b>40 QUESTÕES</b></p>
+<label>Nome Completo</label><input id="nome" autocomplete="name">
+<label>CPF</label><input id="cpf" maxlength="14" inputmode="numeric">
+</div>
+<div class="box"><div id="info">0 de 40 respondidas</div><div class="track"><div id="bar" class="bar"></div></div></div>
+<div id="quiz"></div>
+<div style="text-align:center"><button id="finish" disabled>FINALIZAR QUESTIONÁRIO</button></div>
+<div id="result" class="box result">
+<h2>RESULTADO FINAL</h2><h1 id="nota"></h1><p id="texto"></p>
+<button id="openCert" style="display:none;margin:10px auto">Abrir Certificado</button>
+<div id="cert" class="cert">
+<div style="background:#fffdf4;border:2px solid #C9A227;outline:4px double #C9A227;outline-offset:-12px;padding:40px;position:relative;text-align:center">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.05;font-size:170px;color:#15803d">✝</div>
+<div style="position:relative;z-index:2">
+<div style="font-size:56px;color:#15803d">✝</div>
+<h2 style="color:#15803d;margin:5px 0">ESCOLA BÍBLICA ATALAIA</h2>
+<p style="letter-spacing:2px;color:#64748b">CURSO 1 • FUNDAMENTOS DA FÉ</p>
+<h1 style="color:#166534;font-family:Georgia,serif;letter-spacing:4px">CERTIFICADO</h1>
+<p style="letter-spacing:2px;color:#7b5b10">DE CONCLUSÃO</p>
+<h2 id="cname" style="border-bottom:1px solid #C9A227;padding-bottom:10px;max-width:650px;margin:25px auto;font-family:Georgia,serif"></h2>
+<p>Certificamos que o(a) aluno(a) concluiu com aproveitamento o questionário da</p>
+<h2 style="color:#15803d">AULA 11 — SANTIFICAÇÃO</h2>
+<p>Separação para Deus, transformação da vida, crescimento espiritual e busca de uma vida que agrade ao Senhor.</p>
+<div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-weight:bold;color:#475569;margin:20px 0">
+<span id="ccpf"></span><span id="cscore"></span><span id="cquestions"></span>
+</div>
+<div style="border-top:1px solid #C9A227;border-bottom:1px solid #C9A227;padding:12px;max-width:700px;margin:20px auto;font-family:Georgia,serif;font-style:italic">
+“Sede santos, porque eu sou santo.”
+<br><b>1 Pedro 1:16</b>
+</div>
+<div style="margin-top:25px">
+<svg viewBox="0 0 500 120" width="320" height="90" xmlns="http://www.w3.org/2000/svg">
+<text x="10" y="78" font-family="Brush Script MT,Segoe Script,Lucida Handwriting,cursive" font-size="58" fill="#163E75" font-style="italic">Diego Nascimento</text>
+</svg>
+<div style="border-top:1px solid #334155;width:320px;margin:0 auto;padding-top:6px;font-weight:bold;color:#163E75">Diego Nascimento</div>
+<div style="font-size:12px;color:#64748b">Pastor Evangelista</div>
+</div>
+</div></div>
+<div style="margin-top:15px"><button id="downloadCert">Baixar Certificado</button></div>
+</div></div>
+</div>
+<script>
+const perguntas = [["O que significa santificação?", ["Separação para Deus", "Isolamento das pessoas", "Perfeição humana", "Conhecimento religioso"], 0], ["Qual é o texto bíblico principal da Aula 11?", ["João 3:16", "1 Pedro 1:15-16", "Romanos 8:1", "Salmos 23:1"], 1], ["Segundo 1 Pedro 1:16, por que devemos ser santos?", ["Porque somos melhores que os outros", "Porque devemos agradar às pessoas", "Porque Deus é santo", "Porque precisamos ser perfeitos"], 2], ["A santidade deve alcançar:", ["Somente a vida dentro da igreja", "Somente os momentos de oração", "Somente a vida pública", "Toda a nossa maneira de viver"], 3], ["Qual destas áreas é alcançada pela santificação?", ["Somente a maneira de falar", "Somente os relacionamentos", "Somente o trabalho", "A maneira de falar, pensar, agir e escolher"], 3], ["A santificação não é:", ["Uma transformação da vida", "Uma aparência religiosa", "Uma caminhada com Deus", "Uma busca pela vontade de Deus"], 1], ["Segundo a aula, Deus vê:", ["Apenas nossas obras públicas", "Somente aquilo que falamos", "O coração", "Somente aquilo que fazemos na igreja"], 2], ["Segundo Levítico 20:7, devemos:", ["Santificar-nos e ser santos", "Buscar reconhecimento", "Comparar-nos com outras pessoas", "Evitar todos os relacionamentos"], 0], ["Segundo Romanos 12:1, devemos apresentar nossos corpos como:", ["Sacrifício morto", "Sacrifício vivo, santo e agradável a Deus", "Obra humana perfeita", "Oferta para outras pessoas"], 1], ["A santificação alcança o corpo porque devemos:", ["Ignorar nosso comportamento", "Usar aquilo que Deus nos deu de maneira correta", "Abandonar nosso corpo", "Buscar somente aparência exterior"], 1], ["O que devemos observar em relação à nossa mente?", ["O que estamos permitindo permanecer em nossos pensamentos", "Apenas aquilo que outras pessoas pensam", "Somente conhecimentos religiosos", "Apenas pensamentos positivos"], 0], ["O que nossas palavras devem produzir?", ["Medo", "Confusão", "Edificação", "Discussão"], 2], ["Efésios 4:22-24 apresenta a necessidade de:", ["Permanecer no velho homem", "Deixar o velho homem e revestir-se do novo homem", "Evitar qualquer mudança", "Buscar somente conhecimento"], 1], ["Se antes mentíamos, agora devemos:", ["Ficar em silêncio sempre", "Falar somente dentro da igreja", "Falar a verdade", "Evitar as pessoas"], 2], ["Se antes nossas palavras feriam, devemos aprender a:", ["Falar mais alto", "Usar nossa boca para edificar", "Evitar qualquer conversa", "Responder da mesma maneira"], 1], ["A santificação aparece principalmente:", ["Nas escolhas", "Na aparência", "Nas roupas", "Na posição social"], 0], ["Santificação significa perfeição humana?", ["Sim, significa nunca cometer erros", "Sim, significa não precisar mais de arrependimento", "Não, o cristão está em processo de crescimento", "Não, porque o cristão não precisa mudar"], 2], ["Segundo 1 João 1:8, se dissermos que não temos pecado:", ["Demonstramos maturidade", "Enganamo-nos a nós mesmos", "Alcançamos a santidade", "Demonstramos perfeição"], 1], ["O que devemos fazer quando reconhecemos o pecado?", ["Escondê-lo", "Justificá-lo", "Confessá-lo e abandoná-lo", "Ignorá-lo"], 2], ["Segundo 1 João 1:9, quando confessamos nossos pecados, Deus:", ["Nos abandona", "Nos condena imediatamente", "É fiel e justo para nos perdoar e purificar", "Ignora nossa oração"], 2], ["O cristão pode cair, mas:", ["Deve fazer do pecado seu modo de vida", "Não deve fazer do pecado seu modo de vida", "Não precisa se arrepender", "Não precisa mudar"], 1], ["Quem está sendo santificado é alguém que:", ["Nunca comete erros", "Não deseja permanecer no pecado", "Nunca precisa de correção", "Não precisa da Palavra"], 1], ["Segundo João 17:17, somos santificados:", ["Pela tradição", "Pela experiência", "Na verdade, pela Palavra de Deus", "Pela comparação com outras pessoas"], 2], ["A Bíblia, segundo a aula:", ["Apenas informa", "Confronta e mostra aquilo que precisa ser abandonado", "Serve somente para cultos", "Deve ser lida somente por líderes"], 1], ["Qual destas ações a Palavra de Deus realiza?", ["Corrige nossos pensamentos", "Elimina todas as dificuldades", "Impede qualquer tentação", "Substitui nossas escolhas"], 0], ["Segundo Hebreus 4:12, a Palavra de Deus é:", ["Antiga e limitada", "Viva e eficaz", "Apenas simbólica", "Somente histórica"], 1], ["Quem nos ajuda a viver em santidade?", ["Somente nossa força de vontade", "As outras pessoas", "O Espírito Santo", "Nossa capacidade humana"], 2], ["Segundo Gálatas 5:16, devemos:", ["Andar em Espírito", "Confiar somente em nós mesmos", "Seguir os desejos da carne", "Evitar qualquer relacionamento"], 0], ["Qual destas características faz parte do fruto do Espírito?", ["Orgulho", "Ira", "Amor", "Vingança"], 2], ["Qual das alternativas apresenta somente características mencionadas como fruto do Espírito na aula?", ["Amor, alegria, paz e mansidão", "Orgulho, ira, inveja e vingança", "Medo, ansiedade, competição e orgulho", "Ambição, riqueza, fama e poder"], 0], ["A santificação é:", ["Uma decisão feita apenas uma vez", "Uma caminhada diária", "Uma obrigação somente aos domingos", "Uma mudança apenas exterior"], 1], ["Segundo Lucas 9:23, quem quer seguir Jesus deve:", ["Buscar reconhecimento", "Negar-se a si mesmo, tomar cada dia a sua cruz e seguir Jesus", "Comparar-se com outros cristãos", "Evitar qualquer dificuldade"], 1], ["A santificação exige:", ["Exame pessoal", "Comparação com outras pessoas", "Aparência religiosa", "Reconhecimento público"], 0], ["A verdadeira santificação começa:", ["Nas roupas", "Na aparência", "No coração", "Na posição social"], 2], ["Aquilo que acontece no interior deve:", ["Permanecer escondido", "Aparecer na maneira de viver", "Ser ignorado", "Ser mostrado somente na igreja"], 1], ["Santidade significa apenas evitar o pecado?", ["Sim", "Não. Também envolve praticar aquilo que agrada a Deus", "Sim, porque boas obras não importam", "Não, porque pecado não precisa ser abandonado"], 1], ["Qual destas atitudes é apresentada na aula como parte de uma vida de santificação?", ["Amar", "Vingar-se", "Mentir", "Guardar ressentimento"], 0], ["Qual é o padrão da santidade?", ["Outras pessoas", "Nossa própria opinião", "Deus", "A sociedade"], 2], ["Qual é o princípio central da Aula 11?", ["Santificação é viver separado para Deus", "Santificação é alcançar perfeição humana", "Santificação é evitar todas as pessoas", "Santificação é somente participar dos cultos"], 0], ["Complete: “Sede santos, porque eu sou _____.”", ["justo", "poderoso", "santo", "eterno"], 2]];
+const quiz=document.getElementById('quiz'), resp=Array(40).fill(null);
+perguntas.forEach((p,i)=>{
+ let s=document.createElement('div');s.className='box';
+ s.innerHTML='<b>'+(i+1)+'. '+p[0]+'</b><div class="opts"></div><div class="feed"></div>';
+ p[1].forEach((a,j)=>{
+   let b=document.createElement('button');b.className='opt';
+   b.textContent=String.fromCharCode(65+j)+') '+a;
+   b.onclick=()=>{
+     if(resp[i]!==null)return;
+     resp[i]=j;
+     s.querySelectorAll('.opt').forEach((x,k)=>{
+       x.disabled=true;
+       if(k===p[2])x.classList.add('correct');
+       if(k===j&&j!==p[2])x.classList.add('incorrect');
+     });
+     s.querySelector('.feed').textContent=j===p[2]?'✓ Correta':'✗ Correta: '+String.fromCharCode(65+p[2]);
+     upd();
+   };
+   s.querySelector('.opts').appendChild(b);
+ });
+ quiz.appendChild(s);
+});
+function upd(){
+ let a=resp.filter(x=>x!==null).length;
+ info.textContent=a+' de 40 respondidas';
+ bar.style.width=(a/40*100)+'%';
+ finish.disabled=a!==40;
+}
+cpf.oninput=e=>{
+ let v=e.target.value.replace(/\D/g,'').slice(0,11);
+ v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+ e.target.value=v;
+};
+finish.onclick=()=>{
+ let c=resp.filter((x,i)=>x===perguntas[i][2]).length,n=Math.round(c/40*100);
+ result.style.display='block';nota.textContent=n+' pontos';texto.textContent='Acertos: '+c+' de 40 questões.';
+ if(n>=70)openCert.style.display='inline-block';
+ window.scrollTo(0,document.body.scrollHeight);
+};
+openCert.onclick=()=>{
+ let c=resp.filter((x,i)=>x===perguntas[i][2]).length,n=Math.round(c/40*100);
+ cname.textContent=nome.value||'Aluno(a)';
+ ccpf.textContent='CPF: '+(cpf.value||'Não informado');
+ cscore.textContent='Nota Final: '+n+' pontos';
+ cquestions.textContent='Questões: 40 ('+c+' acertos)';
+ cert.style.display='block';cert.scrollIntoView({behavior:'smooth'});
+};
+downloadCert.onclick=()=>window.print();
+</script>
+</body></html>
