@@ -21,7 +21,7 @@ body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ee
 .track{height:14px;background:#e5e7eb;border-radius:20px;overflow:hidden;display:flex}
 .green{background:#22c55e}.red{background:#dc2626}.bar{height:100%;transition:.25s}
 .q{font-size:18px;font-weight:bold;line-height:1.45;margin-bottom:14px}
-.opts{display:grid!important;gap:9px!important;width:100%!important}
+#quiz{display:block!important;visibility:visible!important} #quiz .question-card{display:block!important;visibility:visible!important;opacity:1!important;height:auto!important;overflow:visible!important} #quiz .opts{display:grid!important;visibility:visible!important} #quiz .opts .opt{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}.opts{display:grid!important;gap:9px!important;width:100%!important;visibility:visible!important}.opts .opt{visibility:visible!important;opacity:1!important}
 .opt{display:block!important;width:100%!important;min-height:54px!important;padding:15px 16px!important;margin:0!important;background:#fff!important;color:#111!important;border:2px solid #94a3b8!important;border-radius:11px!important;font-family:Arial,sans-serif!important;font-size:17px!important;font-weight:600!important;line-height:1.45!important;text-align:left!important;cursor:pointer}
 .opt:hover{background:#f1f5f9!important;border-color:#475569!important}
 .opt.correct{background:#dcfce7!important;border-color:#15803d!important;color:#166534!important}
@@ -115,7 +115,7 @@ body{background:#fff!important}
 </div>
 <div class="verse">“Quando jejuardes, não vos mostreis contristados como os hipócritas.”<strong>Mateus 6:16</strong></div>
 <div class="signature-block">
-<svg class="rubrica" viewBox="0 0 520 140" aria-label="Rúbrica">
+<svg class="rubrica" viewBox="0 0 520 140" aria-label="Assinatura ilustrativa">
 <path d="M30 93 C72 45,95 116,130 78 S180 54,210 88 C235 112,258 55,290 82 S350 103,382 70 C415 35,438 90,485 62" fill="none" stroke="#173b73" stroke-width="5" stroke-linecap="round"/>
 <path d="M55 112 C145 137,286 137,462 126" fill="none" stroke="#173b73" stroke-width="4" stroke-linecap="round"/>
 </svg>
@@ -130,6 +130,8 @@ body{background:#fff!important}
 </div>
 
 <script>
+(function () {
+'use strict';
 const questions = [
 ["O que é o jejum, segundo a aula?",["Uma obrigação religiosa para todos os cristãos.","Uma abstinência voluntária, geralmente de alimentos, acompanhada de oração e busca de Deus.","Uma forma de demonstrar resistência física.","Uma maneira de receber elogios."],1],
 ["Qual é o texto bíblico principal da aula?",["João 3:16-18","Salmos 23:1-6","Mateus 6:16-18","Atos 2:1-4"],2],
@@ -173,20 +175,53 @@ const questions = [
 ["Complete corretamente o princípio apresentado na conclusão: “O jejum não deve produzir apenas um corpo privado de alimento. Deve conduzir o coração a uma maior...”",["independência de Deus.","competição espiritual.","dependência de Deus.","demonstração pública."],2]
 ];
 
-const answers=Array(questions.length).fill(null),quiz=document.getElementById('quiz');let finished=false;
-questions.forEach((q,i)=>{
- const c=document.createElement('section');c.className='box';
- c.innerHTML='<div class="q">'+(i+1)+'. '+q[0]+'</div><div class="opts"></div><div class="feed"></div>';
- q[1].forEach((t,j)=>{
-   const b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+j)+') '+t;
-   b.onclick=()=>answer(i,j,c);c.querySelector('.opts').appendChild(b);
- });
- quiz.appendChild(c);
+const answers = Array(questions.length).fill(null);
+const quiz = document.getElementById('quiz');
+let finished = false;
+
+// Renderizar todas as questões e alternativas imediatamente, sem depender de cliques para abrir.
+if (!quiz) {
+  throw new Error('Elemento #quiz não encontrado no HTML.');
+}
+if (!Array.isArray(questions) || questions.length !== 40) {
+  throw new Error('A lista de questões não foi carregada corretamente.');
+}
+
+questions.forEach((q, i) => {
+  const card = document.createElement('section');
+  card.className = 'box question-card';
+   card.style.display = 'block';
+   card.setAttribute('data-question-index', i);
+
+  const question = document.createElement('div');
+  question.className = 'q';
+  question.textContent = (i + 1) + '. ' + q[0];
+  card.appendChild(question);
+
+  const options = document.createElement('div');
+  options.className = 'opts';
+
+  q[1].forEach((choice, j) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'opt';
+     button.setAttribute('aria-pressed', 'false');
+    button.textContent = String.fromCharCode(65 + j) + ') ' + choice;
+    button.addEventListener('click', () => answer(i, j, card));
+    options.appendChild(button);
+  });
+
+  card.appendChild(options);
+  const feedback = document.createElement('div');
+  feedback.className = 'feed';
+  card.appendChild(feedback);
+  quiz.appendChild(card);
 });
+
 function answer(i,j,c){
  if(finished||answers[i]!==null)return;
  answers[i]=j;const ok=j===questions[i][2];
- c.querySelectorAll('.opt').forEach((b,k)=>{b.classList.add('disabled');if(k===j)b.classList.add(ok?'correct':'incorrect')});
+ c.querySelectorAll('.opt').forEach((b,k)=>{b.classList.add('disabled');b.disabled=true;b.setAttribute('aria-pressed', String(k===j));if(k===j)b.classList.add(ok?'correct':'incorrect');if(k===questions[i][2]&&!ok)b.classList.add('correct')});
  const f=c.querySelector('.feed');f.className='feed show '+(ok?'good':'bad');
  f.textContent=ok?'✓ Resposta correta!':'✗ Incorreta. Resposta correta: '+String.fromCharCode(65+questions[i][2])+'.';
  update();
@@ -210,10 +245,10 @@ document.getElementById('finish').onclick=()=>{
  finished=true;
  const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/40*100;
  document.getElementById('score').textContent=sc.toFixed(0);
- document.getElementById('status').textContent=sc>70?'APROVADO — CERTIFICADO DISPONÍVEL':'NÃO APROVADO';
- document.getElementById('status').style.color=sc>70?'#15803d':'#dc2626';
+ document.getElementById('status').textContent=sc>=70?'QUESTIONÁRIO CONCLUÍDO — CERTIFICADO DISPONÍVEL':'QUESTIONÁRIO CONCLUÍDO';
+ document.getElementById('status').style.color=sc>=70?'#15803d':'#475569';
  document.getElementById('rtext').textContent='Você acertou '+co+' de 40 questões.';
- if(sc>70)document.getElementById('openCert').style.display='inline-block';
+ document.getElementById('openCert').style.display='inline-block';
  document.getElementById('result').style.display='block';
  document.getElementById('result').scrollIntoView({behavior:'smooth'});
 };
@@ -226,33 +261,68 @@ document.getElementById('openCert').onclick=()=>{
  document.getElementById('cert').style.display='block';
  document.getElementById('cert').scrollIntoView({behavior:'smooth'});
 };
-function printCertificate(){
- const name=document.getElementById('name').value.trim(),cpf=document.getElementById('cpf').value;
- if(!name){alert('Digite o nome completo.');return}
- if(cpf.replace(/\D/g,'').length!==11){alert('Digite um CPF com 11 dígitos.');return}
- const co=answers.filter((x,i)=>x===questions[i][2]).length,sc=co/questions.length*100;
- if(sc<=70){alert('O certificado está disponível somente após aprovação.');return}
- document.getElementById('cname').textContent=name;
- document.getElementById('ccpf').textContent='CPF: '+cpf;
- document.getElementById('cquestions').textContent='Quantidade de questões: '+questions.length;
- document.getElementById('cscore').textContent='Nota final: '+sc.toFixed(0)+' pontos';
- document.getElementById('cert').style.display='block';
- document.getElementById('result').style.display='block';
- const certificate=document.querySelector('#cert .certificate');
- const iframe=document.createElement('iframe');
- iframe.style.position='fixed';iframe.style.right='0';iframe.style.bottom='0';iframe.style.width='1px';iframe.style.height='1px';
- iframe.style.border='0';iframe.style.opacity='0';document.body.appendChild(iframe);
- const printDoc=iframe.contentDocument,styles=[...document.querySelectorAll('style')].map(s=>s.textContent).join('\n');
- printDoc.open();
- printDoc.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Certificado</title><style>'+styles+'@page{size:A4 landscape;margin:0}html,body{margin:0!important;padding:0!important;background:#fff!important;width:297mm!important;min-height:210mm!important}.certificate{display:block!important;width:297mm!important;height:190mm!important;min-height:190mm!important;margin:10mm auto 0!important;box-shadow:none!important;overflow:hidden!important}body{font-family:Arial,sans-serif}</style></head><body>');
- printDoc.write(certificate.outerHTML);
- printDoc.write('</body></html>');printDoc.close();
- const printWindow=iframe.contentWindow;let printed=false;
- const cleanup=()=>setTimeout(()=>iframe.remove(),1000);
- const doPrint=()=>{if(printed)return;printed=true;printWindow.focus();printWindow.print();cleanup()};
- setTimeout(doPrint,500);
+function printCertificate() {
+  const name = document.getElementById('name').value.trim();
+  const cpf = document.getElementById('cpf').value;
+  if (!name) { alert('Digite o nome completo.'); return; }
+  if (cpf.replace(/\D/g, '').length !== 11) {
+    alert('Digite um CPF com 11 dígitos.'); return;
+  }
+
+  const answered = answers.filter(value => value !== null).length;
+  if (!finished || answered !== questions.length) {
+    alert('Responda todas as questões e finalize o questionário antes de imprimir.'); return;
+  }
+
+  const correct = answers.filter((value, i) => value === questions[i][2]).length;
+  const score = Math.round(correct / questions.length * 100);
+  
+
+  document.getElementById('cname').textContent = name;
+  document.getElementById('ccpf').textContent = 'CPF: ' + cpf;
+  document.getElementById('cquestions').textContent = 'Quantidade de questões: ' + questions.length;
+  document.getElementById('cscore').textContent = 'Nota final: ' + score + ' pontos';
+
+  const certificate = document.querySelector('#cert .certificate');
+  const printWindow = window.open('', '_blank', 'width=1200,height=850');
+  if (!printWindow) {
+    alert('O navegador bloqueou a janela de impressão. Permita pop-ups para este arquivo e tente novamente.');
+    return;
+  }
+
+  printWindow.document.open();
+  printWindow.document.write(`<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Certificado — Escola Bíblica Atalaia</title>
+<style>
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 297mm; min-height: 210mm; background: #fff; font-family: Arial, sans-serif; }
+.certificate { position: relative; width: 277mm; height: 190mm; min-height: 190mm; margin: 10mm auto; padding: 18mm 18mm 12mm; background: #fffdf4; border: 1px solid #c9a227; outline: 3px double #c9a227; outline-offset: -12px; overflow: hidden; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+.certificate:before { content: "✦  ✦  ✦"; position: absolute; top: 22px; left: 0; right: 0; text-align: center; color: #c9a227; font-size: 18px; letter-spacing: 8px; }
+.cert-content { position: relative; z-index: 2; text-align: center; }
+.school-logo { width: 76px; height: 76px; display: grid; place-items: center; margin: 0 auto 6px; border: 4px double #b8860b; border-radius: 50%; font-size: 38px; font-weight: 900; color: #15803d; background: #fff; }
+.brand { font-weight: 900; letter-spacing: 2px; color: #15803d; }
+.certificate h2 { font-family: Georgia, serif; color: #166534; font-size: 34px; letter-spacing: 5px; margin: 8px 0 2px; }
+.sub { letter-spacing: 1.5px; color: #64748b; font-size: 12px; }
+.cname { font: 700 27px Georgia, serif; border-bottom: 1px solid #c9a227; max-width: 720px; margin: 14px auto 8px; padding-bottom: 6px; }
+.ctext { max-width: 760px; margin: 7px auto; line-height: 1.45; font-size: 14px; }
+.course { font-size: 19px; color: #15803d; font-weight: 900; margin: 10px; }
+.details { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin: 8px auto; font-size: 13px; color: #475569; }
+.verse { max-width: 760px; margin: 10px auto 6px; padding: 8px 18px; border-top: 1px solid #d4b35a; border-bottom: 1px solid #d4b35a; font: italic 13px/1.4 Georgia, serif; color: #334155; }
+.verse strong { display: block; margin-top: 4px; color: #7b5b10; font: 700 12px Arial, sans-serif; }
+.signature-block { margin: 8px auto 0; width: 270px; text-align: center; }
+.rubrica { display: block; width: 250px; height: 56px; margin: 0 auto -4px; }
+.sig-name { font: 700 15px Georgia, serif; color: #173b73; border-top: 1px solid #334155; padding-top: 4px; }
+.signature-block small { display: block; color: #64748b; margin-top: 3px; font-size: 11px; }
+@media print { html, body { width: 297mm; height: 210mm; } .certificate { break-inside: avoid; } }
+</style></head><body>${certificate.outerHTML}</body></html>`);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.onload = () => { printWindow.print(); };
 }
+
 document.getElementById('download').addEventListener('click',printCertificate);
+})();
 </script>
 </body>
 </html>
