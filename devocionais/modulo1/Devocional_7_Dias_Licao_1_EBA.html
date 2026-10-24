@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#173d2b">
+<meta name="description" content="Devocional de 7 dias — O Plano da Salvação. Escola Bíblica Atalaia, Ministério Atalaia.">
+<title>Devocional de 7 Dias | EBA — Ministério Atalaia</title>
+<style>
+:root{--verde:#173d2b;--verde2:#24583e;--dourado:#d5ad57;--fundo:#f4f6f1;--texto:#202820;--suave:#667168;--branco:#fff;--borda:#dfe5dc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+header{background:linear-gradient(135deg,#102d20,var(--verde2));color:#fff;padding:30px 18px 34px;text-align:center;border-bottom:4px solid var(--dourado)}
+.marca{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#f1d99d;font-weight:800}
+header h1{font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.15;margin:10px auto;max-width:760px}
+header p{margin:8px auto 0;max-width:600px;color:#e6eee7}
+main{max-width:850px;margin:22px auto;padding:0 14px 42px}
+.intro{background:#fff;border:1px solid var(--borda);border-radius:16px;padding:18px;margin-bottom:18px}
+.intro strong{color:var(--verde)}
+.dias{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:16px 0}
+.dia-tab{border:1px solid var(--borda);border-radius:12px;background:#fff;color:var(--verde);padding:11px 5px;font-weight:750;cursor:pointer}
+.dia-tab span{display:block;font-size:.75rem;font-weight:500;color:var(--suave)}
+.dia-tab[aria-pressed="true"]{background:var(--verde);color:#fff;border-color:var(--verde);box-shadow:0 3px 10px #173d2b22}
+.dia-tab[aria-pressed="true"] span{color:#e3ecdf}
+.card{background:var(--branco);border:1px solid var(--borda);border-radius:18px;overflow:hidden;box-shadow:0 8px 28px #142d1b0b}
+.card-top{background:#eaf0e7;padding:20px}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--verde2);font-weight:800}
+.card h2{color:var(--verde);font-size:clamp(1.45rem,4vw,2rem);line-height:1.2;margin:7px 0}
+.referencia{font-weight:750;color:#6a5425;margin:0}
+.conteudo{padding:20px}
+.bloco{margin:0 0 17px}
+.bloco h3{font-size:1rem;color:var(--verde);margin:0 0 5px}
+.versiculo{border-left:4px solid var(--dourado);padding:10px 13px;background:#fbf8ef;border-radius:0 10px 10px 0;font-style:italic}
+.acoes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+button{font:inherit}
+.acao{border:0;border-radius:12px;padding:13px 12px;font-weight:800;cursor:pointer;min-height:48px}
+.compartilhar{background:var(--verde);color:#fff}
+.copiar{background:#edf2e9;color:var(--verde);border:1px solid #d6e1d3}
+.acao:focus-visible,.dia-tab:focus-visible{outline:3px solid #d5ad57;outline-offset:3px}
+.feedback{min-height:1.5em;margin:10px 0 0;color:var(--verde2);font-size:.92rem;font-weight:650}
+.dica{font-size:.9rem;color:var(--suave);margin:12px 0 0}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.nav button{background:transparent;border:1px solid var(--borda);border-radius:10px;padding:10px 14px;color:var(--verde);font-weight:750;cursor:pointer}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+footer{text-align:center;color:var(--suave);font-size:.85rem;padding:20px}
+@media(max-width:520px){.dias{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.dia-tab{font-size:.88rem;padding:10px 2px}.acoes{grid-template-columns:1fr}.conteudo{padding:16px}.card-top{padding:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="marca">EBA • Escola Bíblica Atalaia</div>
+  <h1>Devocional de 7 Dias</h1>
+  <p>Lição 1 — O Plano da Salvação</p>
+  <p>Uma palavra por dia para fortalecer a fé e compartilhar esperança.</p>
+</header>
+<main>
+  <section class="intro">
+    <strong>Como compartilhar?</strong>
+    <div>Escolha um dia e toque em <b>Compartilhar</b>. No celular, use o menu que aparecer para escolher o WhatsApp. Se o compartilhamento não estiver disponível, toque em <b>Copiar mensagem</b> e cole no Status ou em uma conversa.</div>
+  </section>
+  <nav class="dias" aria-label="Escolher dia do devocional" id="dias"></nav>
+  <article class="card" aria-live="polite">
+    <div class="card-top">
+      <div class="eyebrow" id="numero">DIA 1 DE 7</div>
+      <h2 id="titulo">Deus me ama</h2>
+      <p class="referencia" id="referencia">João 3:16</p>
+    </div>
+    <div class="conteudo">
+      <section class="bloco"><h3>📖 Palavra de Deus</h3><div class="versiculo" id="versiculo"></div></section>
+      <section class="bloco"><h3>💡 Reflexão</h3><div id="reflexao"></div></section>
+      <section class="bloco"><h3>✨ Pratique hoje</h3><div id="aplicacao"></div></section>
+      <section class="bloco"><h3>🙏 Oração</h3><div id="oracao"></div></section>
+      <div class="acoes">
+        <button class="acao compartilhar" id="btnCompartilhar">↗ Compartilhar devocional</button>
+        <button class="acao copiar" id="btnCopiar">▣ Copiar mensagem</button>
+      </div>
+      <p class="dica">A mensagem inclui o tema, a referência bíblica, a reflexão, a aplicação e a oração, pronta para compartilhar.</p>
+      <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+      <div class="nav">
+        <button id="anterior">← Dia anterior</button>
+        <button id="proximo">Próximo dia →</button>
+      </div>
+    </div>
+  </article>
+</main>
+<footer>Ministério Atalaia • Escola Bíblica Atalaia (EBA)</footer>
+<script>
+const devocionais = [
+{titulo:"Deus me ama",ref:"João 3:16",versiculo:"“Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito...” (João 3:16)",reflexao:"A salvação começa no amor de Deus. Ele tomou a iniciativa de nos oferecer vida por meio de Jesus Cristo. Seu amor nos chama a confiar nele e a responder com gratidão.",aplicacao:"Separe alguns minutos para agradecer a Deus por seu amor e demonstre esse amor a alguém por meio de uma atitude concreta.",oracao:"Senhor, ajuda-me a compreender a grandeza do teu amor e a compartilhá-lo com outras pessoas. Em nome de Jesus, amém."},
+{titulo:"O pecado nos separa de Deus",ref:"Romanos 3:23",versiculo:"“Porque todos pecaram e destituídos estão da glória de Deus.” (Romanos 3:23)",reflexao:"Todos nós precisamos do perdão de Deus. Reconhecer o pecado não é perder a esperança: é admitir nossa necessidade da graça e permitir que Deus transforme nosso caminho.",aplicacao:"Examine seu coração com sinceridade. Reconheça diante de Deus aquilo que precisa ser abandonado e procure agir de maneira diferente.",oracao:"Pai, mostra-me o que preciso mudar. Perdoa-me e guia meus passos no teu caminho. Amém."},
+{titulo:"Jesus é a resposta",ref:"João 14:6",versiculo:"“Eu sou o caminho, e a verdade, e a vida. Ninguém vem ao Pai senão por mim.” (João 14:6)",reflexao:"Jesus é o caminho da reconciliação com Deus. Por sua vida, morte e ressurreição, temos a esperança de perdão e de um relacionamento restaurado com o Pai.",aplicacao:"Converse com Deus em oração e confie a Jesus uma área da sua vida em que você precisa de direção.",oracao:"Jesus, fortalece minha fé em ti e ensina-me a seguir os teus passos todos os dias. Amém."},
+{titulo:"A salvação é um presente",ref:"Efésios 2:8–9",versiculo:"“Porque pela graça sois salvos, por meio da fé...” (Efésios 2:8)",reflexao:"A salvação é dádiva da graça de Deus, recebida pela fé; não é algo que possamos comprar ou merecer por nossos próprios esforços. As boas obras são fruto de uma vida transformada, não o preço da salvação.",aplicacao:"Troque a tentativa de provar seu valor por uma atitude de gratidão. Faça o bem como resposta ao amor que recebeu.",oracao:"Senhor, obrigado por tua graça. Ajuda-me a viver com humildade, fé e gratidão. Amém."},
+{titulo:"Arrependimento e fé",ref:"Marcos 1:15",versiculo:"“Arrependei-vos e crede no evangelho.” (Marcos 1:15)",reflexao:"Arrepender-se é reconhecer o pecado e voltar-se para Deus. Crer no evangelho é confiar na boa notícia de Jesus e responder a ela com uma vida disposta à obediência.",aplicacao:"Dê hoje um passo concreto de obediência à Palavra de Deus e, se necessário, procure corrigir uma atitude ou pedir perdão.",oracao:"Pai, concede-me um coração arrependido e uma fé sincera. Ajuda-me a viver segundo tua Palavra. Amém."},
+{titulo:"Uma nova vida em Cristo",ref:"2 Coríntios 5:17",versiculo:"“Se alguém está em Cristo, nova criatura é...” (2 Coríntios 5:17)",reflexao:"Em Cristo há perdão e transformação. Deus trabalha em nós para que nossas escolhas, palavras e relacionamentos reflitam cada vez mais o caráter de Jesus.",aplicacao:"Escolha uma atitude que demonstre a nova vida em Cristo: fale com bondade, reconcilie-se com alguém ou pratique o bem.",oracao:"Senhor, transforma meu caráter e ajuda-me a viver de modo que te agrade. Amém."},
+{titulo:"A promessa da vida eterna",ref:"João 5:24",versiculo:"“Quem ouve a minha palavra e crê naquele que me enviou tem a vida eterna...” (João 5:24)",reflexao:"A esperança cristã está em Jesus. Sua promessa nos chama a confiar nele hoje e a viver com esperança, sabendo que a vida eterna está ligada à obra de Deus, não à nossa própria força.",aplicacao:"Compartilhe com alguém uma palavra de esperança e explique, com amor, o que Jesus significa para você.",oracao:"Senhor, firma minha esperança em Cristo e usa minha vida para anunciar teu amor. Amém."}
+];
+let atual=0;
+const $=id=>document.getElementById(id);
+const escapeHtml=s=>s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function textoCompartilhamento(d,i){
+ return `📖 *EBA — DEVOCIONAL | DIA ${i+1} DE 7*\n\n🌿 *${d.titulo.toUpperCase()}*\n📜 *Leitura bíblica: ${d.ref}*\n\n${d.versiculo}\n\n💡 *REFLEXÃO*\n${d.reflexao}\n\n✨ *PRATIQUE HOJE*\n${d.aplicacao}\n\n🙏 *ORAÇÃO*\n${d.oracao}\n\n📚 Lição 1 — O Plano da Salvação\n*Escola Bíblica Atalaia | Ministério Atalaia*\n\n➡️ Compartilhe a Palavra e espalhe esperança!`;
+}
+function render(){
+ const d=devocionais[atual];
+ $("numero").textContent=`DIA ${atual+1} DE 7`;
+ $("titulo").textContent=d.titulo;
+ $("referencia").textContent=d.ref;
+ $("versiculo").textContent=d.versiculo;
+ $("reflexao").textContent=d.reflexao;
+ $("aplicacao").textContent=d.aplicacao;
+ $("oracao").textContent=d.oracao;
+ $("anterior").disabled=atual===0;
+ $("proximo").disabled=atual===devocionais.length-1;
+ $("feedback").textContent="";
+ document.querySelectorAll(".dia-tab").forEach((b,i)=>b.setAttribute("aria-pressed",String(i===atual)));
+}
+const nav=$("dias");
+devocionais.forEach((d,i)=>{
+ const b=document.createElement("button");b.type="button";b.className="dia-tab";b.setAttribute("aria-pressed",String(i===0));
+ b.innerHTML=`Dia ${i+1}<span>${escapeHtml(d.ref)}</span>`;
+ b.addEventListener("click",()=>{atual=i;render();});
+ nav.appendChild(b);
+});
+$("anterior").addEventListener("click",()=>{if(atual>0){atual--;render();}});
+$("proximo").addEventListener("click",()=>{if(atual<devocionais.length-1){atual++;render();}});
+$("btnCopiar").addEventListener("click",async()=>{
+ const text=textoCompartilhamento(devocionais[atual],atual);
+ try{
+  if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(text);}
+  else{
+   const area=document.createElement("textarea");area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";document.body.appendChild(area);area.select();
+   const ok=document.execCommand("copy");area.remove();if(!ok)throw new Error("copy failed");
+  }
+  $("feedback").textContent="✓ Mensagem copiada! Agora abra o WhatsApp e cole no Status ou na conversa.";
+ }catch(e){
+  const area=document.createElement("textarea");area.value=text;area.style.width="100%";area.style.minHeight="220px";area.setAttribute("aria-label","Texto do devocional para copiar");
+  const f=$("feedback");f.textContent="Selecione e copie o texto abaixo:";f.appendChild(document.createElement("br"));f.appendChild(area);area.focus();area.select();
+ }
+});
+$("btnCompartilhar").addEventListener("click",async()=>{
+ const d=devocionais[atual],text=textoCompartilhamento(d,atual);
+ if(navigator.share){
+  try{await navigator.share({title:`Devocional — ${d.titulo}`,text});$("feedback").textContent="Menu de compartilhamento aberto.";}
+  catch(e){if(e.name!=="AbortError")$("feedback").textContent="Não foi possível abrir o compartilhamento. Use “Copiar mensagem”.";}
+ }else{
+  $("feedback").textContent="O compartilhamento direto não está disponível neste navegador. Copie a mensagem e cole no WhatsApp.";
+  try{
+   if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(text);$("feedback").textContent="✓ Mensagem copiada! Abra o WhatsApp e cole no Status ou na conversa.";}
+  }catch(e){}
+ }
+});
+render();
+</script>
+</body>
+</html>
